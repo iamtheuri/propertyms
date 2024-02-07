@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Apartment;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//All Apartments
 Route::get('/', function () {
-    return view('welcome');
+    return view('apartments', [
+        'heading' => 'Latest Apartments',
+        'apartments' => Apartment::all()
+    ]);
+});
+
+//Single Apartment
+Route::get('/apartments/{id}', function ($id) {
+    return view('apartment', [
+        'apartment' => Apartment::find($id)
+    ]);
 });
