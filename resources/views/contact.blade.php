@@ -1,47 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <title>Property MS</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+@include('partials.header')
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="box-shadow: 0 0 5px #ab7865;">
-        <div class="container">
-            <a class="navbar-brand" href="/home">Property<span>MS</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="/home" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
 
-                </ul>
-                <li class="nav-item" style="list-style-type: none;">
-                    <button><a href="/login" target="_blank" class="nav-link" style="
-							color: #9f654f;
-							display: flex;
-							justify-content: center;
-							align-items: center;"><i class="fa fa-user" aria-hidden="true"></i></a>
-                    </button>
-                </li>
-            </div>
-        </div>
-    </nav>
+    @include('partials.navbar')
 
     <section class="ftco-section bg-light">
         <div class="container">
@@ -147,50 +111,7 @@
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md col-lg-6 mb-md-0 mb-4">
-                    <h2 class="footer-heading">PROPERTY MS</h2>
-                    <ul class="footer-socials p-0">
-                        <li class="ftco-animate">
-                            <a href="https://iamtheuri.netlify.app" style="font-size: 15px;" title="Website" target="_blank"><span class="fa fa-globe"></span>
-                            </a>
-                        </li>
-                        <li class="ftco-animate">
-                            <a href="https://github.com/iamtheuri" style="font-size: 15px;" title="GitHub" target="_blank"><span class="fa fa-github"></span>
-                            </a>
-                        </li>
-                        <li class="ftco-animate">
-                            <a href="https://twitter.com/iamtheuri_" style="font-size: 15px;" title="Twitter" target="_blank"><span class="fa fa-twitter"></span>
-                            </a>
-                        </li>
-                        <li class="ftco-animate">
-                            <a href="https://www.linkedin.com/in/david-theuri/" style="font-size: 15px;" title="LinkedIn" target="_blank"><span class="fa fa-linkedin"></span>
-                            </a>
-                        </li>
-                        <li class="ftco-animate">
-                            <a href="https://www.instagram.com/iamtheuri_/" style="font-size: 15px;" title="Instagram" target="_blank"><span class="fa fa-instagram"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-md col-lg-6 mb-md-0 mb-4">
-                    <h2 class="footer-heading">QUICK LINKS</h2>
-                    <div class="quicklinks">
-                        <a href="/home" style="font-size: 15px;">
-                            | HOME &nbsp;&nbsp;&nbsp;
-                        </a>
-                        <a href="/contact" style="font-size: 15px;">
-                            | CONTACT US
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
