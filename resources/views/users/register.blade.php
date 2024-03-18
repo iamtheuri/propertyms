@@ -6,112 +6,98 @@
 
     @include('partials.navbar')
 
-    <div class="container" style="padding: 2rem; text-align: center;">
-        <h1>WELCOME TO PROPERTY MS</h1>
-        <div class="row">
-            <div class="col-md">
-                <p>Property Owner</p>
-                <form method="POST" id="ownerForm" name="ownerForm" class="loginForm" action="process_owner_registration.php">
-                    <div class="col-md">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter Username" required>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm">
+                <div style="padding: 2rem; text-align: center;">
+                    <h1>WELCOME TO PROPERTY MS</h1>
+                    <form method="POST" action="/users">
+                        @csrf
+                        <div class="col-md">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" placeholder="Enter Username" value="{{old('name')}}">
+                                @error('name')
+                                <p style="color: brown;">{{$message}}</p>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter your Email" required>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" placeholder="Enter your Email" value="{{old('email')}}">
+                                @error('email')
+                                <p style="color: brown;">{{$message}}</p>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone Number" required>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <input class="form-control" name="phone" placeholder="Phone Number" title="Minimum 10 eg. 0712345678" value="{{old('phone')}}">
+                                @error('phone')
+                                <p style="color: brown;">{{$message}}</p>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" pattern="^(?=.*[A-Z])(?=.*\d).{8,}$" title="Password must contain at least one uppercase letter, one number, and be at least 8 characters long" required>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <select class="form-control" name="role" id="role" value="{{old('role')}}">
+                                    <option value="" disabled selected>Select Role</option>
+                                    <option value="landlord">Property Owner</option>
+                                    <option value="tenant">Tenant</option>
+                                </select>
+                                @error('role')
+                                <p style="color: brown;">{{$message}}</p>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" pattern="^(?=.*[A-Z])(?=.*\d).{8,}$" title="Password must match the first password" required>
+                        <div class="col-md" id="apartment-field" style="display: none;">
+                            <div class="form-group">
+                                <select class="form-control" name="apartment" value="{{old('apartment')}}">
+                                    <option value="" disabled selected>Select Apartment</option>
+                                    <option value="apartment1">Apartment 1</option>
+                                    <option value="apartment2">Apartment 2</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                                @error('apartment')
+                                <p style="color: brown;">{{$message}}</p>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <input type="submit" value="Sign In" class="btn btn-secondary">
-                            <div class="submitting"></div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Enter Password" title="Password must contain at least one uppercase letter, one number, and at least 6 characters long" value="{{old('password')}}">
+                                @error('password')
+                                <p style="color: brown;">{{$message}}</p>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <p>Have An Account? <span><a href="/login">Login!</a></span></p>
-                </form>
-            </div>
-            <div class="col-md">
-                <p>Tenant</p>
-                <form method="POST" id="tenantForm" name="tenantForm" class="loginForm" action="process_tenant_registration.php">
-                    <div class="col-md">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter Username" required>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" title="Password must match the first password" value="{{old('password_confirmation')}}">
+                                @error('password_confirmation')
+                                <p style="color: brown;">{{$message}}</p>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter your Email" required>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="submit" value="Sign Up" class="btn btn-secondary">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <!-- Select Apartment -->
-                            <select class="form-control" name="apartment" id="apartment" required>
-                                <option value="" disabled selected>Select Apartment</option>
-                                <option value="apartment1">Apartment 1</option>
-                                <option value="apartment2">Apartment 2</option>
-                                <option value="apartment3">Apartment 3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone Number" required>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" pattern="^(?=.*[A-Z])(?=.*\d).{8,}$" title="Password must contain at least one uppercase letter, one number, and be at least 8 characters long" required>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" pattern="^(?=.*[A-Z])(?=.*\d).{8,}$" title="Password must match the first password" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <input type="submit" value="Sign In" class="btn btn-secondary">
-                            <div class="submitting"></div>
-                        </div>
-                    </div>
-                    <p>Have An Account? <span><a href="/login">Login!</a></span></p>
-                </form>
+                    </form>
+                    <p>Already have an account? <span><a href="/login">Login!</a></span></p>
+                </div>
             </div>
         </div>
-
     </div>
 
+    // Allow Tenants to select apartment
     <script>
-        document.addEvenetListener('DOMContentLoaded', function() {
-            var password = document.getELementById("password");
-            var confirm_password = document.getElementById("confirm_password");
-
-            function validatePassword() {
-                if (password.value != confirm_password.value) {
-                    confirm_password.setCustomValidity("Passwords do not match");
-                } else {
-                    confirm_password.setCustomValidity('');
-                }
-
-                password.addEventListener('change', validatePassword);
-                confirm_password.addEventListener('keyup', validatePassword);
+        document.getElementById('role').addEventListener('change', function() {
+            var role = this.value;
+            if (role === 'tenant') {
+                document.getElementById('apartment-field').style.display = 'block';
+            } else {
+                document.getElementById('apartment-field').style.display = 'none';
             }
         });
     </script>

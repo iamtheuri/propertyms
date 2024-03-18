@@ -15,4 +15,5 @@
     <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{asset('css/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('image/anonymous.ico')}}">
 </head>

@@ -6,7 +6,7 @@
 
 <body>
 
-    <div class="hero-wrap js-fullheight" style="background-image: url('{{asset('image/bg.webp')}}');" data-stellar-background-ratio="0.5">
+    <div class="hero-wrap js-fullheight" style="background-image: url('{{asset('image/bg.webp')}}')" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
@@ -23,35 +23,35 @@
             <div class="row">
                 <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
                     <div class="d-block services-wrap text-center">
-                        <div class="img" style="background-image: url('{{asset('image/home-1.webp')}}');"></div>
+                        <div class="img" style="background-image: url('{{asset('image/home-1.webp')}}')"></div>
                         <div class="media-body py-4 px-3">
                             <h3 class="heading">Automate Property Management</h3>
                             <p>Easily scale and manage more properties by automating repetitive tasks.
                             </p>
-                            <p><a href="#" class="btn btn-primary">Read more</a></p>
+                            <p><a href="#" class="btn btn-primary">Contact Us</a></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
                     <div class="d-block services-wrap text-center">
-                        <div class="img" style="background-image: url('{{asset('image/home-2.webp')}}');"></div>
+                        <div class="img" style="background-image: url('{{asset('image/home-2.webp')}}')"></div>
                         <div class="media-body py-4 px-3">
                             <h3 class="heading">Reports and Statements</h3>
                             <p>Quickly generate tenant, property and landlord statements with the click of a button.
                             </p>
-                            <p><a href="#" class="btn btn-primary">Read more</a></p>
+                            <p><a href="#" class="btn btn-primary">Contact Us</a></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
                     <div class="d-block services-wrap text-center">
-                        <div class="img" style="background-image: url('{{asset('image/home-3.webp')}}');"></div>
+                        <div class="img" style="background-image: url('{{asset('image/home-3.webp')}}')"></div>
                         <div class="media-body py-4 px-3">
                             <h3 class="heading">Effortless Communication</h3>
                             <p>Save time travelling from one apartment to another by communicating to tenants from
                                 anywhere in our app via SMS.
                             </p>
-                            <p><a href="#" class="btn btn-primary">Read more</a></p>
+                            <p><a href="#" class="btn btn-primary">Contact Us</a></p>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
             <div class="row no-gutters">
                 <div class="col-lg-6">
                     <div class="room-wrap d-md-flex">
-                        <a href="#" class="img" style="background-image: url('{{asset('image/room-1.webp')}}');"></a>
+                        <a href="#" class="img" style="background-image: url('{{asset('image/room-1.webp')}}')"></a>
                         <div class="half left-arrow d-flex align-items-center">
                             <div class="text p-4 p-xl-5 text-center">
                                 <h3 class="mb-3"><a href="#">5 Bedroom</a></h3>
@@ -228,18 +228,6 @@
     </section>
 
     @include('partials.footer')
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/jquery.animateNumber.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/scrollax.min.js"></script>
-    <script src="js/main.js"></script>
 
 </body>
 

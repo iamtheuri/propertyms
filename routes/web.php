@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Apartment;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +15,7 @@ use App\Models\Apartment;
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
 });
 
@@ -23,25 +23,31 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [UserController::class, 'login'])->name('login');
 
-Route::get('/register', function () {
-    return view('register');
-});
+// User Registration Form
+Route::get('/register', [UserController::class, 'create']);
 
-//All Apartments
-Route::get('/', function () {
-    return view('apartments', [
-        'heading' => 'Latest Apartments',
-        'apartments' => Apartment::all()
-    ]);
-});
+// Store New User
+Route::post('/users', [UserController::class, 'store']);
 
-//Single Apartment
-Route::get('/apartments/{id}', function ($id) {
-    return view('apartment', [
-        'apartment' => Apartment::find($id)
-    ]);
-});
+// Logout
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+// Login User
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+// Tenant Home Page
+Route::get('/tenant/home', function () {
+    return view('tenant.home');
+})->middleware('auth');
+
+// Tenant Space Maintenance
+Route::get('/tenant/maintenance', function () {
+    return view('tenant.maintenance');
+})->middleware('auth');
+
+// Tenant Financials
+Route::get('/tenant/financials', function () {
+    return view('tenant.financials');
+})->middleware('auth');
