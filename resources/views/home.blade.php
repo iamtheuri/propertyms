@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="room-wrap d-md-flex">
-                        <a href="#" class="img" style="background-image: url('{{asset('image/room-2.webp')}}');"></a>
+                        <a href="#" class="img" style="background-image: url('{{asset('image/room-2.webp')}}')"></a>
                         <div class="half left-arrow d-flex align-items-center">
                             <div class="text p-4 p-xl-5 text-center">
                                 <h3 class="mb-3"><a href="#">3 Bedroom</a></h3>
@@ -107,7 +107,7 @@
 
                 <div class="col-lg-6">
                     <div class="room-wrap d-md-flex">
-                        <a href="#" class="img order-md-last" style="background-image: url('{{asset('image/room-3.webp')}}');"></a>
+                        <a href="#" class="img order-md-last" style="background-image: url('{{asset('image/room-3.webp')}}')"></a>
                         <div class="half right-arrow d-flex align-items-center">
                             <div class="text p-4 p-xl-5 text-center">
                                 <h3 class="mb-3"><a href="#">2 Bedroom</a></h3>
@@ -125,7 +125,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="room-wrap d-md-flex">
-                        <a href="#" class="img order-md-last" style="background-image: url('{{asset('image/room-4.webp')}}');"></a>
+                        <a href="#" class="img order-md-last" style="background-image: url('{{asset('image/room-4.webp')}}')"></a>
                         <div class="half right-arrow d-flex align-items-center">
                             <div class="text p-4 p-xl-5 text-center">
                                 <h3 class="mb-3"><a href="#">Bedsitters</a></h3>
@@ -149,7 +149,7 @@
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-md-6 wrap-about">
-                    <div class="img img-2 mb-4" style="background-image: url('{{asset('image/home-8.webp')}}');">
+                    <div class="img img-2 mb-4" style="background-image: url('{{asset('image/home-8.webp')}}')">
                     </div>
                     <h2>Manage rentals seamlessly</h2>
                     <p>A modern property management system that helps landlords and tenants communicate
