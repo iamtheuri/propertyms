@@ -20,23 +20,16 @@ class MaintenanceController extends Controller
     // Store New Maintenances
     public function store(Request $request)
     {
-        try {
-            $formFields = $request->validate([
-                'category' => ['required', 'in:plumbing,electricity,shower,painting,other'],
-                'status' => ['required', 'in:open,closed'],
-                'summary' => ['required', 'min:5']
-            ]);
+        $formFields = $request->validate([
+            'category' => ['required', 'in:plumbing,electricity,shower,painting,other'],
+            'status' => ['required', 'in:open,closed'],
+            'summary' => ['required', 'min:5']
+        ]);
 
-            //dd($formFields);
+        $maintenance = Maintenance::create($formFields);
 
-            //Creating a new instance of the maintenance
-            $maintenance = Maintenance::create($formFields);
+        //dd($maintenance->category);
 
-            //dd($maintenance->category);
-
-            return redirect('/tenant/maintenance')->with('success', 'Maintenance Added Successfully!');
-        } catch (\Exception $e) {
-            return redirect('/tenant/home')->back()->with('error', 'Failed to add maintenance: ' . $e->getMessage());
-        }
+        return redirect('/tenant/maintenance')->with('success', 'Maintenance Added Successfully!');
     }
 }

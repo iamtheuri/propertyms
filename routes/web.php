@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -23,6 +24,9 @@ Route::get('/', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+//Submit Contact Form
+Route::post('/contact-form', [ContactController::class, 'store']);
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
 

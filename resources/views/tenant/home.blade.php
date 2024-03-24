@@ -48,7 +48,7 @@
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">Leasing Period</h5>
                                 <p class="card-text text-large">Tenancy Start Date: 01-01-2024</p>
-                                <p class="card-text text-large">To: Today</p>
+                                <p class="card-text text-large">To: {{ time() }}</p>
                             </div>
                         </div>
                     </div>

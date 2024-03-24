@@ -16,44 +16,56 @@
                             <div class="col-lg-8 col-md-7 d-flex align-items-stretch">
                                 <div class="contact-wrap w-100 p-md-5 p-4">
                                     <h3 class="mb-4">Get in touch</h3>
-                                    <div id="form-message-warning" class="mb-4"></div>
-                                    <div id="form-message-success" class="mb-4" style="display: none;">
-                                        Message was sent, thank you!
-                                    </div>
-                                    <form method="POST" id="contactForm" name="contactForm" class="contactForm">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="label" for="name">Full Name</label>
-                                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-                                                </div>
+
+                                    <!-- Contact Form -->
+
+                                    <form method="POST" action="/contact-form">
+                                        @csrf
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="name" placeholder="Enter Username" value="{{old('name')}}">
+                                                @error('name')
+                                                <p style="color: brown;">{{$message}}</p>
+                                                @enderror
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="label" for="email">Email Address</label>
-                                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-                                                </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" name="email" placeholder="Enter your Email" value="{{old('email')}}">
+                                                @error('email')
+                                                <p style="color: brown;">{{$message}}</p>
+                                                @enderror
                                             </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="label" for="subject">Subject</label>
-                                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
-                                                </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <input class="form-control" name="phone" placeholder="Phone Number" title="Minimum 10 eg. 0712345678" value="{{old('phone')}}">
+                                                @error('phone')
+                                                <p style="color: brown;">{{$message}}</p>
+                                                @enderror
                                             </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="label" for="#">Message</label>
-                                                    <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message"></textarea>
-                                                </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <input class="form-control" name="message" placeholder="Message" value="{{old('message')}}">
+                                                @error('message')
+                                                <p style="color: brown;">{{$message}}</p>
+                                                @enderror
                                             </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <input type="submit" value="Send Message" class="btn btn-primary">
-                                                    <div class="submitting"></div>
-                                                </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="submit" value="SUBMIT" class="btn btn-primary">
                                             </div>
                                         </div>
                                     </form>
+
+                                    @if (session('message'))
+                                    <div class="alert alert-success">
+                                        {{ session('message') }}
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-5 d-flex align-items-stretch">
