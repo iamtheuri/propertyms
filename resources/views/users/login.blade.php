@@ -47,6 +47,8 @@
             </div>
         </div>
     </div>
+    @include('partials.scripts')
+
 </body>
 
 </html>

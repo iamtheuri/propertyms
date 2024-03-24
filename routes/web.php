@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +33,7 @@ Route::get('/register', [UserController::class, 'create']);
 Route::post('/users', [UserController::class, 'store']);
 
 // Logout
-Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth')->name('logout');
 
 // Login User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
@@ -43,9 +44,23 @@ Route::get('/tenant/home', function () {
 })->middleware('auth');
 
 // Tenant Space Maintenance
-Route::get('/tenant/maintenance', function () {
-    return view('tenant.maintenance');
+Route::get('/tenant/maintenance', [MaintenanceController::class, 'index'])->middleware('auth');
+
+// Add Tenant Maintenance
+Route::get('/tenant/add-maintenance', function () {
+    return view('tenant.add-maintenance');
 })->middleware('auth');
+
+// Store Maintenance
+Route::post('/add-maintenance', [MaintenanceController::class, 'store'])->middleware('auth');
+
+// Edit Maintenance
+Route::get('/edit-maintenance', function () {
+    return view('tenant.edit-maintenance');
+})->middleware('auth');
+
+// Delete Maintenance
+Route::get('/delete-maintenance', [MaintenanceController::class, 'delete'])->middleware('auth');
 
 // Tenant Financials
 Route::get('/tenant/financials', function () {

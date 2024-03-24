@@ -12,6 +12,7 @@
         "area17/twill": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
+        "laravel/prompts": "^0.1.16",
         "laravel/pulse": "^1.0@beta",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8"
