@@ -8,7 +8,11 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    //Show Registration Form
+    public function home()
+    {
+        return view('home');
+    }
+
     public function create()
     {
         return view('users.register');
@@ -31,10 +35,18 @@ class UserController extends Controller
         // Create New User
         $user = User::create($formFields);
 
+        // dd($user->role);
+
+        if ($user->role === 'landlord') {
+            $redirectTo = '/landlord/home';
+        } else {
+            $redirectTo = '/tenant/home';
+        }
+
         // Login
         auth()->login($user);
 
-        return redirect('/tenant/home')->with('message', 'User created and logged in');
+        return redirect($redirectTo)->with('message', 'User created and logged in');
     }
 
     // Logout
@@ -48,7 +60,7 @@ class UserController extends Controller
         return redirect('/')->with('message', 'Logged out!');
     }
 
-    // Login
+    // Login Form
     public function login()
     {
         return view('users.login');
@@ -65,7 +77,15 @@ class UserController extends Controller
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate();
 
-            return redirect('/tenant/home')->with('message', 'Login Successful');
+            $user = auth()->user();
+
+            if ($user->role === 'landlord') {
+                $redirectTo = '/landlord/home';
+            } else {
+                $redirectTo = '/tenant/home';
+            }
+
+            return redirect($redirectTo)->with('message', 'Login Successful');
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials!'])->onlyInput('email');

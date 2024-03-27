@@ -42,7 +42,9 @@
 
                     </form>
                     <p>Don't have an account? <span><a href="/register">Sign Up!</a></span></p>
-                    <p>Are you a property Owner? Head on to the <span><a href="/admin/login">Admin Dashboard!</a></span></p>
+                    <!-- 
+                        <p>Are you a property Owner? Head on to the <span><a href="{{ env('ADMIN_APP_PATH') }}">Admin Dashboard!</a></span></p> 
+                    -->
                 </div>
             </div>
         </div>

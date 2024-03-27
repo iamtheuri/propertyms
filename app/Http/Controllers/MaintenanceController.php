@@ -16,6 +16,11 @@ class MaintenanceController extends Controller
         return view('tenant.maintenance', compact('maintenances'));
     }
 
+    public function add()
+    {
+        return view('tenant.add-maintenance');
+    }
+
 
     // Store New Maintenances
     public function store(Request $request)
@@ -31,5 +36,10 @@ class MaintenanceController extends Controller
         //dd($maintenance->category);
 
         return redirect('/tenant/maintenance')->with('success', 'Maintenance Added Successfully!');
+    }
+
+    public function edit()
+    {
+        return view('tenant.edit-maintenance');
     }
 }
