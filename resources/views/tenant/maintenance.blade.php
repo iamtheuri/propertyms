@@ -11,6 +11,9 @@
             <h1>Maintenance for {{auth()->user()->name}}</h1>
         </div>
         <div class="card-body">
+
+            @if($maintenances)
+
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -41,60 +44,15 @@
                         </td>
                     </tr>
                     @endforeach
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Electricity</td>
-                        <td>Closed</td>
-                        <td>02-02-2024</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="actionDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Action
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="actionDropdown">
-                                    <li><a class="edit text-secondary" id="edit" href="/edit-maintenance">Edit</a></li>
-                                    <li><a class="delete text-secondary" id="edit" href="/delete-maintenance">Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Inspection</td>
-                        <td>Closed</td>
-                        <td>02-02-2024</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="actionDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Action
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="actionDropdown">
-                                    <li><a class="edit text-secondary" id="edit" href="/edit-maintenance">Edit</a></li>
-                                    <li><a class="delete text-secondary" id="edit" href="/delete-maintenance">Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Painting</td>
-                        <td>Open</td>
-                        <td>02-02-2024</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="actionDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Action
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="actionDropdown">
-                                    <li><a class="edit text-secondary" id="edit" href="/edit-maintenance">Edit</a></li>
-                                    <li><a class="delete text-secondary" id="edit" href="/delete-maintenance">Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
 
                 </tbody>
             </table>
+
+            @else
+
+            No maintenance issues as of now, register yours by clicking on the button below!
+
+            @endif
 
             <a href="/tenant/add-maintenance" class="btn btn-primary text-end">Add Maintenance</a>
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('location');
             $table->integer('till');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

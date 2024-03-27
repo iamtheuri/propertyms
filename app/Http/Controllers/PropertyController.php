@@ -8,7 +8,15 @@ use Illuminate\Validation\Rule;
 
 class PropertyController extends Controller
 {
+    //Show All Maintenances
     public function index()
+    {
+        $userId = auth()->id();
+        $properties = Property::where('user_id', $userId)->latest()->get();
+        return view('landlord.properties', compact('properties'));
+    }
+
+    public function add()
     {
         return view('landlord.add_property');
     }
@@ -22,6 +30,12 @@ class PropertyController extends Controller
             'location' => ['required'],
             'till' => ['required'],
         ]);
+
+        $userId = auth()->id();
+
+        $formFields['user_id'] = $userId;
+
+        // dd($formFields);
 
         $property = Property::create($formFields);
 
