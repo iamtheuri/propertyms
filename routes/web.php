@@ -5,6 +5,8 @@ use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LandlordController;
 use App\Http\Controllers\TenantController;
+use App\Http\Controllers\PropertyController;
+use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -51,3 +53,6 @@ Route::get('/landlord/home', [LandlordController::class, 'index'])->middleware('
 Route::get('/landlord/tenants', [LandlordController::class, 'tenants'])->middleware('auth');
 Route::get('/landlord/properties', [LandlordController::class, 'properties'])->middleware('auth');
 Route::get('/landlord/financials', [LandlordController::class, 'financials'])->middleware('auth');
+
+Route::get('/landlord/add-property', [PropertyController::class, 'index'])->middleware('auth');
+Route::post('/property-form', [PropertyController::class, 'store'])->middleware('auth');
