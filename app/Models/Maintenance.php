@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Maintenance extends Model
 {
     use HasFactory;
-    protected $fillable = ['category', 'status', 'summary'];
+    protected $fillable = ['category', 'status', 'summary', 'user_id'];
 }

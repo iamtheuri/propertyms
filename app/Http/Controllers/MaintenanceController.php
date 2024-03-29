@@ -9,10 +9,10 @@ use Illuminate\Validation\Rule;
 class MaintenanceController extends Controller
 {
 
-    //Show All Maintenances
     public function index()
     {
-        $maintenances = Maintenance::latest()->get();
+        $userId = auth()->user()->id;
+        $maintenances = Maintenance::where('user_id', $userId)->latest()->get();
         return view('tenant.maintenance', compact('maintenances'));
     }
 
@@ -22,7 +22,6 @@ class MaintenanceController extends Controller
     }
 
 
-    // Store New Maintenances
     public function store(Request $request)
     {
         $formFields = $request->validate([
@@ -31,6 +30,10 @@ class MaintenanceController extends Controller
             'summary' => ['required', 'min:5']
         ]);
 
+        $userId = auth()->id();
+
+        $formFields['user_id'] = $userId;
+
         $maintenance = Maintenance::create($formFields);
 
         //dd($maintenance->category);
@@ -38,8 +41,33 @@ class MaintenanceController extends Controller
         return redirect('/tenant/maintenance')->with('success', 'Maintenance Added Successfully!');
     }
 
-    public function edit()
+    public function edit(Maintenance $maintenance)
     {
-        return view('tenant.edit-maintenance');
+        return view('tenant.edit-maintenance', [
+            'maintenance' => $maintenance
+        ]);
+    }
+
+    public function update(Request $request, Maintenance $maintenance)
+    {
+        $formFields = $request->validate([
+            'category' => ['required', 'in:plumbing,electricity,shower,painting,other'],
+            'status' => ['required', 'in:open,closed'],
+            'summary' => ['required', 'min:5']
+        ]);
+
+        $userId = auth()->id();
+
+        $formFields['user_id'] = $userId;
+
+        $maintenance->update($formFields);
+
+        return redirect('/tenant/maintenance')->with('success', 'Maintenance Updated successfully!');
+    }
+
+    public function destroy(Maintenance $maintenance)
+    {
+        $maintenance->delete();
+        return redirect('/tenant/maintenance')->with('success', 'Maintenance deleted successfully!');
     }
 }

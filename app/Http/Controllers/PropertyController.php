@@ -8,7 +8,6 @@ use Illuminate\Validation\Rule;
 
 class PropertyController extends Controller
 {
-    //Show All Maintenances
     public function index()
     {
         $userId = auth()->id();
@@ -20,6 +19,7 @@ class PropertyController extends Controller
     {
         return view('landlord.add_property');
     }
+
     public function store(Request $request)
     {
         $formFields = $request->validate([

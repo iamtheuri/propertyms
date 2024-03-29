@@ -15,14 +15,15 @@
 
                 <div class="row justify-content-center">
                     <div class="col-lg-6 col-md-8 col-sm">
-                        <div style="padding: 2rem; text-align: center;">
+                        <div class="p-4 text-center">
 
-                            <form method="POST" action="/edit-maintenance">
+                            <form method="POST" action="/tenant/maintenance/{{ $maintenance->id }}">
                                 @csrf
+                                @method('PUT')
                                 <div class="col-md">
                                     <div class="form-group">
-                                        <select class="form-control" name="category" id="category" value="{{old('category')}}">
-                                            <option value="" disabled selected>Select Category</option>
+                                        <select class="form-control" name="category">
+                                            <option value="{{$maintenance->category}}" disabled selected>{{ucwords($maintenance->category)}}</option>
                                             <option value="plumbing">Plumbing</option>
                                             <option value="electricity">Electricity</option>
                                             <option value="shower">Shower</option>
@@ -36,8 +37,8 @@
                                 </div>
                                 <div class="col-md">
                                     <div class="form-group">
-                                        <select class="form-control" name="status" id="status" value="{{old('status')}}">
-                                            <option value="" disabled selected>Select Status</option>
+                                        <select class="form-control" name="status">
+                                            <option value="{{$maintenance->status}}" disabled selected>{{ucwords($maintenance->status)}}</option>
                                             <option value="open">Open</option>
                                             <option value="closed">Closed</option>
                                         </select>
@@ -48,17 +49,27 @@
                                 </div>
                                 <div class="col-md">
                                     <div class="form-group">
-                                        <input class="form-control" name="summary" placeholder="Brief Summary" title="eg. Shower coil burnt" value="{{old('summary')}}">
+                                        <input class="form-control" name="summary" placeholder="Brief Summary" title="eg. Shower coil burnt" value="{{$maintenance->summary}}">
                                         @error('summary')
                                         <p style="color: brown;">{{$message}}</p>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
+                                <div class="col">
+                                    <div class="form-group d-flex">
                                         <input type="submit" value="Update Maintenance" class="btn btn-primary">
                                     </div>
                                 </div>
+                            </form>
+
+                            <form method="POST" action="/tenant/maintenance/{{ $maintenance->id }}">
+
+                                @csrf
+
+                                @method('DELETE')
+
+                                <button class="btn btn-danger d-flex ml-3">Delete Maintenance</button>
+
                             </form>
                         </div>
                     </div>

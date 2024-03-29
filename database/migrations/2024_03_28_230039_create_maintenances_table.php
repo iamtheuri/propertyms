@@ -16,6 +16,7 @@ return new class extends Migration
             $table->enum('category', ['plumbing', 'electricity', 'shower', 'painting', 'other']);
             $table->enum('status', ['open', 'closed']);
             $table->string('summary');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

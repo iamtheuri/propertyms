@@ -12,7 +12,11 @@
         </div>
         <div class="card-body">
 
-            @if($maintenances)
+            @if($maintenances->isEmpty())
+
+            No maintenance issues as of now.
+
+            @else
 
             <table class="table table-striped table-hover">
                 <thead>
@@ -31,26 +35,12 @@
                         <td>{{$maintenance->category}}</td>
                         <td>{{$maintenance->status}}</td>
                         <td>{{$maintenance->summary}}</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="actionDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Action
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="actionDropdown">
-                                    <li><a class="edit text-secondary" id="edit" href="/edit-maintenance">Edit</a></li>
-                                    <li><a class="delete text-secondary" id="edit" href="/delete-maintenance">Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
+                        <td><a href=" /tenant/maintenance/{{ $maintenance->id }}/edit" class="btn btn-secondary">Update</a></td>
                     </tr>
                     @endforeach
 
                 </tbody>
             </table>
-
-            @else
-
-            No maintenance issues as of now, register yours by clicking on the button below!
 
             @endif
 
