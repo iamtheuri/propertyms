@@ -41,4 +41,38 @@ class PropertyController extends Controller
 
         return redirect('/landlord/properties')->with('message', 'Property created successfully');
     }
+
+    public function edit(Property $property)
+    {
+        return view('landlord/edit_property', [
+            'property' => $property,
+        ]);
+    }
+
+    public function update(Request $request, Property $property)
+    {
+        $formFields = $request->validate([
+            'name' => ['required'],
+            'owner' => ['required'],
+            'units' => ['required'],
+            'description' => ['required'],
+            'location' => ['required'],
+            'till' => ['required'],
+        ]);
+
+        $userId = auth()->id();
+
+        $formFields['user_id'] = $userId;
+
+        $property->update($formFields);
+
+        return redirect('/landlord/properties')->with('message', 'Property updated successfully');
+    }
+
+    public function destroy(Property $property)
+    {
+        // dd($property);
+        $property->delete();
+        return redirect('/landlord/properties')->with('message', 'Property deleted successfully');
+    }
 }

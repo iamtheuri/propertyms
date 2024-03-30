@@ -21,7 +21,7 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Number</th>
+                        <th scope="col">#</th>
                         <th scope="col">Property Name</th>
                         <th scope="col">Property Owner</th>
                         <th scope="col">Number of Units</th>
@@ -46,17 +46,7 @@
                         <td>{{$property->description}}</td>
                         <td>{{$property->location}}</td>
                         <td>{{$property->till}}</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="actionDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Action
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="actionDropdown">
-                                    <li><a class="edit text-secondary" id="edit" href="/edit-property">Edit</a></li>
-                                    <li><a class="delete text-secondary" id="edit" href="/delete-property">Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
+                        <td><a href="/landlord/properties/{{ $property->id }}/edit" class="btn btn-secondary">Update</a></td>
                     </tr>
 
                     @endforeach

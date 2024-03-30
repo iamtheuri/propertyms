@@ -52,6 +52,7 @@
                 <li class="nav-item active"><a href="/landlord/home" class="nav-link"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp; Welcome {{ explode(' ', trim(auth()->user()->name))[0] }}</a></li>
                 <li class="nav-item"><a href="/landlord/tenants" class="nav-link"><i class="fa fa-users" aria-hidden="true"></i>&nbsp; Tenants</a></li>
                 <li class="nav-item"><a href="/landlord/properties" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i>&nbsp; Property</a></li>
+                <li class="nav-item"><a href="/landlord/units" class="nav-link"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp; Units</a></li>
                 <li class="nav-item"><a href="/landlord/financials" class="nav-link"><i class="fa fa-money" aria-hidden="true"></i>&nbsp; Financials</a></li>
                 <li class="nav-item" style="list-style-type: none;">
                     <form class="inline" action="/logout" method="POST">
