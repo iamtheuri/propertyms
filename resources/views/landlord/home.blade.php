@@ -24,7 +24,7 @@
                 <div class="card col-sm mr-2" style="box-shadow: 0 0 3px #ab7865;">
                     <div class="card-body">
                         <h5 class="card-title">Add Units</h5>
-                        <a href="#" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; Add</a>
+                        <a href="/landlord/units" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; Add</a>
                     </div>
                 </div>
                 <div class="card col-sm" style="box-shadow: 0 0 3px #ab7865;">

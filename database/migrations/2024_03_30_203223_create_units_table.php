@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
-            $table->enum('category', ['plumbing', 'electricity', 'shower', 'painting', 'other']);
-            $table->enum('status', ['open', 'closed']);
-            $table->string('summary');
+            $table->string('name');
+            $table->string('rent');
+            $table->enum('occupied', ['vacant', 'occupied']);
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('property_id')->constrained();
             $table->timestamps();
         });
     }

@@ -79,3 +79,9 @@ Route::delete('/landlord/properties/{property}', [PropertyController::class, 'de
 
 
 Route::get('/landlord/units', [UnitController::class, 'index'])->middleware('auth');
+Route::get('/landlord/add-unit', [UnitController::class, 'add'])->middleware('auth');
+Route::post('/unit-form', [UnitController::class, 'store'])->middleware('auth');
+
+Route::get('/landlord/units/{unit}/edit', [UnitController::class, 'edit'])->middleware('auth');
+Route::put('/landlord/units/{unit}', [UnitController::class, 'update'])->middleware('auth');
+Route::delete('/landlord/units/{unit}', [UnitController::class, 'destroy'])->middleware('auth');
