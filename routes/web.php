@@ -47,8 +47,9 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 |--------------------------------------------------------------------------
 */
 
-Route::get('/tenant/home', [TenantController::class, 'index'])->middleware('auth');
-Route::get('/tenant/financials', [TenantController::class, 'financials'])->middleware('auth');
+Route::get('/tenant/home', [UserController::class, 'tenant_home'])->middleware('auth');
+Route::get('/tenant/financials', [UserController::class, 'tenant_financials'])->middleware('auth');
+
 Route::get('/tenant/maintenance', [MaintenanceController::class, 'index'])->middleware('auth');
 Route::get('/tenant/add-maintenance', [MaintenanceController::class, 'add'])->middleware('auth');
 Route::post('/add-maintenance', [MaintenanceController::class, 'store'])->middleware('auth');
@@ -65,23 +66,25 @@ Route::delete('/tenant/maintenance/{maintenance}', [MaintenanceController::class
 */
 
 Route::get('/landlord/home', [LandlordController::class, 'index'])->middleware('auth');
-Route::get('/landlord/financials', [LandlordController::class, 'financials'])->middleware('auth');
-Route::get('/landlord/tenants', [LandlordController::class, 'tenants'])->middleware('auth');
 Route::get('/landlord/properties', [PropertyController::class, 'index'])->middleware('auth');
+Route::get('/landlord/units', [UnitController::class, 'index'])->middleware('auth');
+Route::get('/landlord/tenants', [LandlordController::class, 'tenants'])->middleware('auth');
+Route::get('/landlord/financials', [LandlordController::class, 'financials'])->middleware('auth');
+
 Route::get('/landlord/add-property', [PropertyController::class, 'add'])->middleware('auth');
 Route::post('/property-form', [PropertyController::class, 'store'])->middleware('auth');
-
-
 Route::get('/landlord/properties/{property}/edit', [PropertyController::class, 'edit'])->middleware('auth');
 Route::put('/landlord/properties/{property}', [PropertyController::class, 'update'])->middleware('auth');
 Route::delete('/landlord/properties/{property}', [PropertyController::class, 'destroy'])->middleware('auth');
 
-
-
-Route::get('/landlord/units', [UnitController::class, 'index'])->middleware('auth');
 Route::get('/landlord/add-unit', [UnitController::class, 'add'])->middleware('auth');
 Route::post('/unit-form', [UnitController::class, 'store'])->middleware('auth');
-
 Route::get('/landlord/units/{unit}/edit', [UnitController::class, 'edit'])->middleware('auth');
 Route::put('/landlord/units/{unit}', [UnitController::class, 'update'])->middleware('auth');
 Route::delete('/landlord/units/{unit}', [UnitController::class, 'destroy'])->middleware('auth');
+
+Route::get('/landlord/add-tenant', [TenantController::class, 'add'])->middleware('auth');
+Route::post('/tenant-form', [TenantController::class, 'store'])->middleware('auth');
+Route::get('/landlord/tenants/{tenant}/edit', [TenantController::class, 'edit'])->middleware('auth');
+Route::put('/landlord/tenants/{tenant}', [TenantController::class, 'update'])->middleware('auth');
+Route::delete('/landlord/tenants/{tenant}', [TenantController::class, 'destroy'])->middleware('auth');

@@ -90,4 +90,14 @@ class UserController extends Controller
 
         return back()->withErrors(['email' => 'Invalid Credentials!'])->onlyInput('email');
     }
+
+    public function tenant_home()
+    {
+        return view('tenant.home');
+    }
+
+    public function tenant_financials()
+    {
+        return view('tenant.financials');
+    }
 }

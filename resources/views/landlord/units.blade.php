@@ -8,7 +8,7 @@
 
     <div class="card m-4">
         <div class="card-header">
-            <h1>Units for Tenant Name</h1>
+            <h1>Units for {{auth()->user()->name}}</h1>
         </div>
         <div class="card-body">
 

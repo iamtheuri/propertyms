@@ -30,7 +30,7 @@
                 <div class="card col-sm" style="box-shadow: 0 0 3px #ab7865;">
                     <div class="card-body">
                         <h5 class="card-title">Add Tenants</h5>
-                        <a href="#" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; Add</a>
+                        <a href="/landlord/tenants" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; Add</a>
                     </div>
                 </div>
             </div>
