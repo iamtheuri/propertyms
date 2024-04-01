@@ -3,7 +3,6 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\LandlordController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\UnitController;
@@ -53,8 +52,6 @@ Route::get('/tenant/financials', [UserController::class, 'tenant_financials'])->
 Route::get('/tenant/maintenance', [MaintenanceController::class, 'index'])->middleware('auth');
 Route::get('/tenant/add-maintenance', [MaintenanceController::class, 'add'])->middleware('auth');
 Route::post('/add-maintenance', [MaintenanceController::class, 'store'])->middleware('auth');
-
-// Edit Maintenance
 Route::get('/tenant/maintenance/{maintenance}/edit', [MaintenanceController::class, 'edit'])->middleware('auth');
 Route::put('/tenant/maintenance/{maintenance}', [MaintenanceController::class, 'update'])->middleware('auth');
 Route::delete('/tenant/maintenance/{maintenance}', [MaintenanceController::class, 'destroy'])->middleware('auth');
@@ -65,11 +62,11 @@ Route::delete('/tenant/maintenance/{maintenance}', [MaintenanceController::class
 |--------------------------------------------------------------------------
 */
 
-Route::get('/landlord/home', [LandlordController::class, 'index'])->middleware('auth');
+Route::get('/landlord/home', [UserController::class, 'landlord_home'])->middleware('auth');
 Route::get('/landlord/properties', [PropertyController::class, 'index'])->middleware('auth');
 Route::get('/landlord/units', [UnitController::class, 'index'])->middleware('auth');
-Route::get('/landlord/tenants', [LandlordController::class, 'tenants'])->middleware('auth');
-Route::get('/landlord/financials', [LandlordController::class, 'financials'])->middleware('auth');
+Route::get('/landlord/tenants', [TenantController::class, 'index'])->middleware('auth');
+Route::get('/landlord/financials', [UserController::class, 'landlord_financials'])->middleware('auth');
 
 Route::get('/landlord/add-property', [PropertyController::class, 'add'])->middleware('auth');
 Route::post('/property-form', [PropertyController::class, 'store'])->middleware('auth');

@@ -100,4 +100,14 @@ class UserController extends Controller
     {
         return view('tenant.financials');
     }
+
+    public function landlord_home()
+    {
+        return view('landlord.home');
+    }
+
+    public function landlord_financials()
+    {
+        return view('landlord.financials');
+    }
 }

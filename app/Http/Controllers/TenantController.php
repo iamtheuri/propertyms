@@ -7,5 +7,8 @@ use App\Models\Tenant;
 
 class TenantController extends Controller
 {
-    //
+    public function index()
+    {
+        return view('landlord.tenants');
+    }
 }
