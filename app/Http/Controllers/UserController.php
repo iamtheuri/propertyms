@@ -49,7 +49,6 @@ class UserController extends Controller
         return redirect($redirectTo)->with('message', 'User created and logged in');
     }
 
-    // Logout
     public function logout(Request $request)
     {
         auth()->logout();
@@ -60,13 +59,11 @@ class UserController extends Controller
         return redirect('/')->with('message', 'Logged out!');
     }
 
-    // Login Form
     public function login()
     {
         return view('users.login');
     }
 
-    // Authenticate 
     public function authenticate(Request $request)
     {
         $formFields = $request->validate([
@@ -104,10 +101,5 @@ class UserController extends Controller
     public function landlord_home()
     {
         return view('landlord.home');
-    }
-
-    public function landlord_financials()
-    {
-        return view('landlord.financials');
     }
 }

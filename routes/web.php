@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\InvoiceController;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -66,7 +67,7 @@ Route::get('/landlord/home', [UserController::class, 'landlord_home'])->middlewa
 Route::get('/landlord/properties', [PropertyController::class, 'index'])->middleware('auth');
 Route::get('/landlord/units', [UnitController::class, 'index'])->middleware('auth');
 Route::get('/landlord/tenants', [TenantController::class, 'index'])->middleware('auth');
-Route::get('/landlord/financials', [UserController::class, 'landlord_financials'])->middleware('auth');
+Route::get('/landlord/invoices', [InvoiceController::class, 'index'])->middleware('auth');
 
 Route::get('/landlord/add-property', [PropertyController::class, 'add'])->middleware('auth');
 Route::post('/property-form', [PropertyController::class, 'store'])->middleware('auth');
@@ -85,3 +86,9 @@ Route::post('/tenant-form', [TenantController::class, 'store'])->middleware('aut
 Route::get('/landlord/tenants/{tenant}/edit', [TenantController::class, 'edit'])->middleware('auth');
 Route::put('/landlord/tenants/{tenant}', [TenantController::class, 'update'])->middleware('auth');
 Route::delete('/landlord/tenants/{tenant}', [TenantController::class, 'destroy'])->middleware('auth');
+
+Route::get('/landlord/add-invoice', [InvoiceController::class, 'add'])->middleware('auth');
+Route::post('/invoice-form', [InvoiceController::class, 'store'])->middleware('auth');
+Route::get('/landlord/invoices/{invoice}/edit', [InvoiceController::class, 'edit'])->middleware('auth');
+Route::put('/landlord/invoices/{invoice}', [InvoiceController::class, 'update'])->middleware('auth');
+Route::delete('/landlord/invoices/{invoice}', [InvoiceController::class, 'destroy'])->middleware('auth');
