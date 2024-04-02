@@ -14,7 +14,7 @@
 
             @if($tenants->isEmpty())
 
-            <!-- <h4>No Properties Available</h4> -->
+            <h4>No Tenants</h4>
 
             @else
 

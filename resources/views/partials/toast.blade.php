@@ -22,7 +22,8 @@
             </button> -->
         </div>
         <div class="toast-body">
-            {{ session('message') }}
+            {{ session('message') }} <br>
+            <small>Time: {{now()}}</small>
         </div>
     </div>
 </div>

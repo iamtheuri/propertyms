@@ -14,7 +14,7 @@
 
             @if($units->isEmpty())
 
-            <!-- <h4>No Properties Available</h4> -->
+            <h4>No Units Available</h4>
 
             @else
 

@@ -64,8 +64,47 @@ class TenantController extends Controller
         return redirect('/landlord/tenants')->with('message', 'Tenant created successfully');
     }
 
-    public function edit()
+    public function edit(Tenant $tenant, Unit $unit)
     {
-        return view('landlord.edit_tenant');
+        $userId = auth()->user()->id;
+        $properties = Property::where('user_id', $userId)->get();
+        $propertyIds = $properties->pluck('id');
+        $units = Unit::whereIn('property_id', $propertyIds)->get();
+        $property = $unit->property;
+        return view('landlord.edit_tenant', [
+            'tenant' => $tenant,
+            'properties' => $properties,
+            'units' => $units,
+            'unit' => $unit,
+        ]);
+    }
+
+    public function update(Request $request, Tenant $tenant)
+    {
+        $formFields = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'property_id' => 'required',
+            'unit_id' => 'required',
+        ]);
+
+        if ($request->hasFile('lease_agreement_file')) {
+            $formFields['lease_agreement_file'] = $request->file('lease_agreement_file')->store('lease_agreement_files', 'public');
+        }
+
+        $userId = auth()->user()->id;
+
+        $formFields['user_id'] = $userId;
+
+        $tenant->update($formFields);
+
+        return redirect('/landlord/tenants')->with('message', 'Tenant updated successfully');
+    }
+
+    public function destroy(Tenant $tenant)
+    {
+        $tenant->delete();
+        return redirect('/landlord/tenants')->with('message', 'Tenant deleted successfully');
     }
 }
