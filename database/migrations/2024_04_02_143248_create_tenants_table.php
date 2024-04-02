@@ -15,15 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('property_id');
             $table->unsignedBigInteger('unit_id');
+            $table->foreignId('user_id')->constrained();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('lease_agreement_file')->nullable();
             $table->timestamps();
-
-            // Foreign key constraints
-            $table->foreign('property_id')->references('id')->on('properties');
-            $table->foreign('unit_id')->references('id')->on('units');
         });
     }
 

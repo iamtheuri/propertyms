@@ -15,5 +15,11 @@ class Tenant extends Model
         'lease_agreement_file',
         'property_id',
         'unit_id',
+        'user_id',
     ];
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
 }
