@@ -3,7 +3,7 @@
          <div class="row">
 
              <div class="col-md col-lg-6 mb-md-0 mb-4">
-                 <h2 class="footer-heading">PROPERTY MS</h2>
+                 <h2 class="text-white">Socials</h2>
                  <ul class="footer-socials p-0">
                      <li class="ftco-animate">
                          <a href="https://iamtheuri.netlify.app" style="font-size: 15px;" title="Website" target="_blank"><span class="fa fa-globe"></span>
@@ -29,13 +29,13 @@
              </div>
 
              <div class="col-md col-lg-6 mb-md-0 mb-4">
-                 <h2 class="footer-heading">QUICK LINKS</h2>
-                 <div class="quicklinks">
-                     <a href="/" style="font-size: 15px;">
-                         | HOME &nbsp;&nbsp;&nbsp;
+                 <h2 class="text-white">Quick Links</h2>
+                 <div>
+                     <a href="/">
+                         <h5 style="color: white !important; padding-right: 2rem;">Home</h5>
                      </a>
-                     <a href="/contact" style="font-size: 15px;">
-                         | CONTACT US
+                     <a href="/contact" style="color: white !important;">
+                         <h5 style="color: white !important; padding-right: 2rem;">Contact Us</h5>
                      </a>
                  </div>
              </div>

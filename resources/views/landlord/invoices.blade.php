@@ -29,6 +29,7 @@
                             <th scope="col">Property</th>
                             <th scope="col">Invoice Amount</th>
                             <th scope="col">Due Month</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -44,7 +45,8 @@
                             <td>{{$invoice->tenant->unit->name}}</td>
                             <td>{{$invoice->tenant->unit->property->name}}</td>
                             <td>{{$invoice->invoice_amount}}</td>
-                            <td>{{$invoice->month}}</td>
+                            <td>{{ ucwords($invoice->month) }}</td>
+                            <td>{{ ucwords($invoice->status) }}</td>
                             <td><a href="/landlord/invoices/{{$invoice->id}}/edit" class="btn btn-secondary">Update</a></td>
                         </tr>
                         @endforeach

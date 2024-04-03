@@ -11746,12 +11746,12 @@ textarea.form-control {
 }
 
 footer {
-    padding: 7em 0;
+    padding: 4rem;
 }
 
 .footer {
     background: #272727;
-    padding-bottom: 0;
+    padding-bottom: 4rem;
 }
 
 .footer .border-top {

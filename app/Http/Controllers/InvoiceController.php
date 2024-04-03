@@ -44,6 +44,7 @@ class InvoiceController extends Controller
             'tenant_id' => 'required',
             'invoice_amount' => 'required',
             'month' => ['nullable', 'in:january,february,march,april,may,june,july,august,september,october,november,december'],
+            'status' => ['required', 'in:pending,closed'],
         ]);
         $userId = auth()->user()->id;
 
@@ -78,6 +79,7 @@ class InvoiceController extends Controller
             'tenant_id' => 'required',
             'invoice_amount' => 'required',
             'month' => ['nullable', 'in:january,february,march,april,may,june,july,august,september,october,november,december'],
+            'status' => ['required', 'in:pending,closed'],
         ]);
         $userId = auth()->user()->id;
 

@@ -16,6 +16,7 @@ class Invoice extends Model
         'user_id',
         'invoice_amount',
         'month',
+        'status',
     ];
 
     public function tenant()

@@ -96,6 +96,18 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md">
+                                    <div class="form-group">
+                                        <select name="status" class="form-control">
+                                            <option value="" disabled selected>Select Status</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="closed">Closed</option>
+                                        </select>
+                                        @error('status')
+                                        <p style="color: brown;">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <input type="submit" value="Add Invoice" class="btn btn-primary">

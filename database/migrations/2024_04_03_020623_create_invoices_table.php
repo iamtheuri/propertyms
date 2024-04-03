@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('invoice_amount');
             $table->enum('month', ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'])->nullable();
+            $table->enum('status', ['pending', 'closed']);
             $table->timestamps();
         });
     }
