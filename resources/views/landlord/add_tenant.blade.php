@@ -27,7 +27,7 @@
                                             <option value="{{ $property->id }}">{{$property->name}}</option>
                                             @endforeach
                                         </select>
-                                        @error('property')
+                                        @error('property_id')
                                         <p style="color: brown;">{{$message}}</p>
                                         @enderror
                                     </div>
@@ -40,7 +40,7 @@
                                             <option value="{{ $unit->id }}">{{$unit->name}}</option>
                                             @endforeach
                                         </select>
-                                        @error('unit')
+                                        @error('unit_id')
                                         <p style="color: brown;">{{$message}}</p>
                                         @enderror
                                     </div>

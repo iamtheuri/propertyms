@@ -17,4 +17,9 @@ class Invoice extends Model
         'invoice_amount',
         'month',
     ];
+
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class);
+    }
 }

@@ -27,7 +27,7 @@ class TenantController extends Controller
             'tenants' => $tenants,
         ]);
     }
-    public function add(Tenant $tenant, Property $property)
+    public function add(Tenant $tenant)
     {
         $userId = auth()->user()->id;
         $properties = Property::where('user_id', $userId)->get();
@@ -70,7 +70,6 @@ class TenantController extends Controller
         $properties = Property::where('user_id', $userId)->get();
         $propertyIds = $properties->pluck('id');
         $units = Unit::whereIn('property_id', $propertyIds)->get();
-        $property = $unit->property;
         return view('landlord.edit_tenant', [
             'tenant' => $tenant,
             'properties' => $properties,

@@ -12,12 +12,11 @@
         </div>
         <div class="card-body">
 
-            <p>if Empty Invoices</p>
+            @if($invoices->isEmpty())
 
             <h4>No Invoices</h4>
 
-            <p>else</p>
-
+            @else
             <div style="overflow-x:auto;">
 
                 <table class="table table-striped table-hover">
@@ -26,22 +25,34 @@
                             <th scope="col">#</th>
                             <th scope="col">Invoice Name</th>
                             <th scope="col">Tenant</th>
-                            <th scope="col">Property</th>
                             <th scope="col">Unit</th>
-                            <th scope="col">Rent Amount</th>
+                            <th scope="col">Property</th>
+                            <th scope="col">Invoice Amount</th>
                             <th scope="col">Due Month</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-
-                    </tbody>
+                        @php
+                        $invoice_number = 1;
+                        @endphp
+                        @foreach($invoices as $invoice)
+                        <tr>
+                            <td>{{$invoice_number ++}}</td>
+                            <td>{{$invoice->name}}</td>
+                            <td>{{$invoice->tenant->name}}</td>
+                            <td>{{$invoice->tenant->unit->name}}</td>
+                            <td>{{$invoice->tenant->unit->property->name}}</td>
+                            <td>{{$invoice->invoice_amount}}</td>
+                            <td>{{$invoice->month}}</td>
+                            <td><a href="/landlord/invoices/{{$invoice->id}}/edit" class="btn btn-secondary">Update</a></td>
+                        </tr>
+                        @endforeach
                 </table>
 
             </div>
 
-            <p>endif</p>
-
+            @endif
             <a href="/landlord/add-invoice" class="btn btn-primary text-end">Add Invoice</a>
         </div>
     </div>
