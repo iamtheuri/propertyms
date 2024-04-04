@@ -39,25 +39,12 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <select class="form-control" name="role" id="role" value="{{old('role')}}">
-                                    <option value="" disabled selected>Select Role</option>
+                                <select class="form-control" name="role" id="role">
+                                    <option value="{{old('role')}}" selected>Select Role</option>
                                     <option value="landlord">Property Owner</option>
                                     <option value="tenant">Tenant</option>
                                 </select>
                                 @error('role')
-                                <p style="color: brown;">{{$message}}</p>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md" id="apartment-field" style="display: none;">
-                            <div class="form-group">
-                                <select class="form-control" name="apartment" value="{{old('apartment')}}">
-                                    <option value="" disabled selected>Select Apartment</option>
-                                    <option value="apartment1">Apartment 1</option>
-                                    <option value="apartment2">Apartment 2</option>
-                                    <!-- Add more options as needed -->
-                                </select>
-                                @error('apartment')
                                 <p style="color: brown;">{{$message}}</p>
                                 @enderror
                             </div>
@@ -89,18 +76,6 @@
             </div>
         </div>
     </div>
-
-    // Allow Tenants to select apartment
-    <script>
-        document.getElementById('role').addEventListener('change', function() {
-            var role = this.value;
-            if (role === 'tenant') {
-                document.getElementById('apartment-field').style.display = 'block';
-            } else {
-                document.getElementById('apartment-field').style.display = 'none';
-            }
-        });
-    </script>
 
     @include('partials.scripts')
 

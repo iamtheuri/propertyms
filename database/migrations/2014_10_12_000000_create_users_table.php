@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone')->default('')->nullable();
+            $table->string('phone')->nullable();
             $table->enum('role', ['landlord', 'tenant']);
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();

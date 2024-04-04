@@ -30,6 +30,6 @@ class ContactController extends Controller
 
         $contactForm->save();
 
-        return redirect('/')->with('message', 'Success!');
+        return redirect('/')->with('message', 'Message sent successfully!');
     }
 }

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Unit;
 use App\Models\Property;
+use App\Models\Unit;
+use App\Models\Tenant;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -27,13 +28,21 @@ class UserController extends Controller
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'phone' => ['required', 'min:10', 'regex:/^\d{10,}$/'],
+            'phone' => 'required',
             'role' => ['required', 'in:landlord,tenant'],
             'password' => ['required', 'confirmed', 'regex:/^(?=.*[A-Z])(?=.*\d).{6,}$/'],
         ]);
 
         // Encrypt Password
         $formFields['password'] = bcrypt($formFields['password']);
+
+        // Check if the user role is tenant and email exists in the tenants table
+        if ($formFields['role'] === 'tenant') {
+            $tenantExists = Tenant::where('email', $formFields['email'])->first();
+            if (!$tenantExists) {
+                return redirect()->back()->withInput()->withErrors(['email' => 'User does not exist.']);
+            }
+        }
 
         // Create New User
         $user = User::create($formFields);

@@ -22,8 +22,8 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Property Name</th>
                         <th scope="col">Unit Name</th>
+                        <th scope="col">Property Name</th>
                         <th scope="col">Occupied</th>
                         <th scope="col">Rent</th>
                         <th scope="col">Action</th>
@@ -36,8 +36,8 @@
                     @foreach($units as $unit)
                     <tr>
                         <td>{{$unit_number ++}}</td>
-                        <td>{{$unit->property->name}}</td>
                         <td>{{$unit->name}}</td>
+                        <td>{{$unit->property->name}}</td>
                         <td>{{$unit->occupied}}</td>
                         <td>{{$unit->rent}}</td>
                         <td><a href="/landlord/units/{{$unit->id}}/edit" class="btn btn-secondary">Update</a></td>
