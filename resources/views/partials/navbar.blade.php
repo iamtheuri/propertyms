@@ -1,26 +1,3 @@
-<style>
-    #myBtn {
-        display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 30px;
-        z-index: 99;
-        border: none;
-        outline: none;
-        background-color: #9f654f;
-        color: white;
-        cursor: pointer;
-        padding: 15px;
-        border-radius: 5px;
-        font-size: 10px;
-        scroll-behavior: smooth;
-    }
-
-    #myBtn:hover {
-        background-color: gray;
-    }
-</style>
-
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="box-shadow: 0 0 5px #ab7865;">
     <div class="container">
 
@@ -114,28 +91,3 @@
 </nav>
 
 @include('partials.toast')
-
-<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
-
-<script>
-    let mybutton = document.getElementById("myBtn");
-
-    window.onscroll = function() {
-        scrollFunction();
-    };
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-        } else {
-            mybutton.style.display = "none";
-        }
-    }
-
-    function topFunction() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-</script>

@@ -92,3 +92,5 @@ Route::post('/invoice-form', [InvoiceController::class, 'store'])->middleware('a
 Route::get('/landlord/invoices/{invoice}/edit', [InvoiceController::class, 'edit'])->middleware('auth');
 Route::put('/landlord/invoices/{invoice}', [InvoiceController::class, 'update'])->middleware('auth');
 Route::delete('/landlord/invoices/{invoice}', [InvoiceController::class, 'destroy'])->middleware('auth');
+
+Route::post('/send-reminder', [InvoiceController::class, 'reminders'])->middleware('auth');

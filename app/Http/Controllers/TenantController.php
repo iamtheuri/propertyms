@@ -46,9 +46,11 @@ class TenantController extends Controller
         $formFields = $request->validate([
             'name' => 'required',
             'email' => ['required', 'email', Rule::unique('tenants', 'email')],
-            'phone' => 'required',
+            'phone' => ['required', 'phone:KE', Rule::unique('tenants', 'phone')],
             'property_id' => 'required',
             'unit_id' => 'required',
+        ], [
+            'phone.phone' => 'The phone number must be a valid KE phone number.',
         ]);
 
         if ($request->hasFile('lease_agreement_file')) {
@@ -83,7 +85,7 @@ class TenantController extends Controller
         $formFields = $request->validate([
             'name' => 'required',
             'email' => ['required', 'email', Rule::unique('tenants', 'email')],
-            'phone' => 'required',
+            'phone' => ['required', 'phone:KE', Rule::unique('tenants', 'phone')],
             'property_id' => 'required',
             'unit_id' => 'required',
         ]);

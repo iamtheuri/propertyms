@@ -3,6 +3,28 @@
 
 @include('partials.header')
 
+<style>
+    .reminder-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        border: none;
+        outline: none;
+        background-color: #9f654f;
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 10px;
+        scroll-behavior: smooth;
+    }
+
+    .reminder-btn:hover {
+        background-color: gray;
+    }
+</style>
+
 <body>
     @include('partials.navbar')
 
@@ -56,6 +78,46 @@
 
             @endif
             <a href="/landlord/add-invoice" class="btn btn-primary text-end">Add Invoice</a>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary reminder-btn" data-toggle="modal" data-target="#reminderModal">
+                Send Reminder
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="reminderModal" tabindex="-1" role="dialog" aria-labelledby="reminderModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reminderModalTitle">Send Reminders</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="/send-reminder">
+                                @csrf
+                                <div class="col-md">
+                                    <div class="form-group">
+                                        <select name="tenant_phone" class="form-control">
+                                            <option value="" disabled selected>Select Tenant</option>
+                                            @foreach ($tenants as $tenant)
+                                            <option value="{{ $tenant->phone }}">{{$tenant->name}}: {{$tenant->phone}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('tenant_phone')
+                                        <p style="color: brown;">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="submit" value="Send Reminder" class="btn btn-primary">
+                                    </div>
+                                </div>
+                            </form>
+                            <button type="button" class="btn btn-secondary ml-3" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
