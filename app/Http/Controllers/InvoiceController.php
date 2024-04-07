@@ -99,21 +99,25 @@ class InvoiceController extends Controller
         return redirect('/landlord/invoices')->with('message', 'Invoice deleted successfully');
     }
 
-    public function reminders(Request $request, Invoice $invoice)
+    public function reminders(Request $request)
     {
         $key = config('infobip.api_key');
         $baseUrl = config('infobip.url_base_path');
-        $apiKeyPrefix = config('infobip.api_key_prefix');
         $selectedPhone = $request->input('tenant_phone');
-        // dd($invoice);
-        $propertyName = $invoice->tenant->unit->property->name;
-        $tenantName = $invoice->tenant->name;
-        $invoiceAmount = $invoice->invoice_amount;
-        dd($propertyName, $tenantName, $invoiceAmount);
+        $balance = $request->input('balance');
+
+        $selectedTenant = Tenant::where('phone', $selectedPhone)->first();
+        $selectedName = $selectedTenant->name;
+
+        $selectedProperty = $selectedTenant->property;
+        $propertyName = $selectedProperty->name;
+
+        $message = "Dear $selectedName, $propertyName reminds you to pay your outstanding balance of Ksh. $balance.";
+
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://1vqp6k.api.infobip.com/sms/2/text/single',
+            CURLOPT_URL => 'https://' . $baseUrl . '/sms/2/text/single',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -121,11 +125,11 @@ class InvoiceController extends Controller
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => '{"from":"PropertyMS",
-                "to":"' . $selectedPhone . '",
-                "text":"{{ $propertyName }}
-                Dear {{ $tenantName }}, this is a polite reminder to pay your outstanding {{ $invoiceAmount }}"
-            }',
+            CURLOPT_POSTFIELDS => json_encode(array(
+                'from' => 'PropertyMS',
+                'to' => $selectedPhone,
+                'text' => $message
+            )),
             CURLOPT_HTTPHEADER => array(
                 'Authorization: App ' . $key,
                 'Content-Type: application/json',
@@ -133,12 +137,14 @@ class InvoiceController extends Controller
             ),
         ));
 
-
         $response = curl_exec($curl);
 
         curl_close($curl);
-        echo $response;
 
-        return redirect('/landlord/invoices')->with('message', 'Reminder sent successfully');
+        if ($response) {
+            return redirect('/landlord/invoices')->with('message', 'Reminder sent successfully');
+        } else {
+            return redirect('/landlord/invoices')->with('error', 'Failed to send reminder');
+        }
     }
 }

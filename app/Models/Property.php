@@ -19,4 +19,9 @@ class Property extends Model
     {
         return $this->hasMany(Unit::class);
     }
+
+    public function tenants()
+    {
+        return $this->hasManyThrough(Tenant::class, Unit::class);
+    }
 }

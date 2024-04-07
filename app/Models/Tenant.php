@@ -22,4 +22,9 @@ class Tenant extends Model
     {
         return $this->belongsTo(Unit::class);
     }
+
+    public function property()
+    {
+        return $this->belongsTo(Property::class, 'property_id', 'id');
+    }
 }

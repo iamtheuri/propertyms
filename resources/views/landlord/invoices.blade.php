@@ -107,6 +107,14 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md">
+                                    <div class="form-group">
+                                        <input class="form-control" name="balance" placeholder="Balance">
+                                        @error('balance')
+                                        <p style="color: brown;">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <input type="submit" value="Send Reminder" class="btn btn-primary">
