@@ -14,10 +14,22 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('tenant_id')->constrained();
-            $table->foreignId('property_id')->constrained();
-            $table->foreignId('unit_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('tenant_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('property_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('unit_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('invoice_amount');
             $table->enum('month', ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'])->nullable();
             $table->enum('status', ['pending', 'closed']);

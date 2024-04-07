@@ -68,6 +68,9 @@ Route::get('/landlord/properties', [PropertyController::class, 'index'])->middle
 Route::get('/landlord/units', [UnitController::class, 'index'])->middleware('auth');
 Route::get('/landlord/tenants', [TenantController::class, 'index'])->middleware('auth');
 Route::get('/landlord/invoices', [InvoiceController::class, 'index'])->middleware('auth');
+Route::get('/landlord/maintenances', [MaintenanceController::class, 'index'])->middleware('auth');
+Route::get('/landlord/maintenance/{maintenance}/edit', [MaintenanceController::class, 'delete'])->middleware('auth');
+Route::delete('/tenant/maintenance/{maintenance}', [MaintenanceController::class, 'destroy'])->middleware('auth');
 
 Route::get('/landlord/add-property', [PropertyController::class, 'add'])->middleware('auth');
 Route::post('/property-form', [PropertyController::class, 'store'])->middleware('auth');

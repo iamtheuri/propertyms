@@ -30,9 +30,9 @@
 
             <ul class="navbar-nav ml-auto" style="display: flex; align-items: center;">
 
-                <li class="nav-item active"><a href="/tenant/home" class="nav-link">Welcome {{ explode(' ', trim(auth()->user()->name))[0] }}</a></li>
-                <li class="nav-item"><a href="/tenant/maintenance" class="nav-link">Maintenance</a></li>
-                <li class="nav-item"><a href="/tenant/financials" class="nav-link">Financials</a></li>
+                <li class="nav-item active"><a href="/tenant/home" class="nav-link"><i class="fa fa-user-circle" aria-hidden="true"></i> &nbsp; Welcome {{ explode(' ', trim(auth()->user()->name))[0] }}</a></li>
+                <li class="nav-item"><a href="/tenant/maintenance" class="nav-link"><i class="fa fa-wrench" aria-hidden="true"></i> &nbsp; Maintenance</a></li>
+                <li class="nav-item"><a href="/tenant/financials" class="nav-link"><i class="fa fa-money" aria-hidden="true"></i> &nbsp; Financials</a></li>
                 <li class="nav-item" style="list-style-type: none;">
                     <form class="inline" action="/logout" method="POST">
 
@@ -54,6 +54,7 @@
                 <li class="nav-item"><a href="/landlord/units" class="nav-link"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp; Units</a></li>
                 <li class="nav-item"><a href="/landlord/tenants" class="nav-link"><i class="fa fa-users" aria-hidden="true"></i>&nbsp; Tenants</a></li>
                 <li class="nav-item"><a href="/landlord/invoices" class="nav-link"><i class="fa fa-money" aria-hidden="true"></i>&nbsp; Financials</a></li>
+                <li class="nav-item"><a href="/landlord/maintenances" class="nav-link"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Maintenance</a></li>
                 <li class="nav-item" style="list-style-type: none;">
                     <form class="inline" action="/logout" method="POST">
 

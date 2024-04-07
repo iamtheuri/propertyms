@@ -14,7 +14,6 @@
                 <div class="row ml-2">
                     <h1 class="text-center">Welcome {{ auth()->user()->name }}</h1>
                 </div>
-
                 <div class="row">
                     <div class="card col-sm mr-1" style="box-shadow: 0 0 1px #ab7865;">
                         <div class="card-body">

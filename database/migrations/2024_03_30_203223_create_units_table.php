@@ -16,8 +16,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('rent');
             $table->enum('occupied', ['vacant', 'occupied']);
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('property_id')->constrained();
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('property_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

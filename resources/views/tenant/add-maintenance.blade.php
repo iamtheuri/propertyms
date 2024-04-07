@@ -21,8 +21,8 @@
                                 @csrf
                                 <div class="col-md">
                                     <div class="form-group">
-                                        <select class="form-control" name="category" value="{{old('category')}}">
-                                            <option value="" disabled selected>Select Category</option>
+                                        <select class="form-control" name="category">
+                                            <option value="{{old('category')}}" disabled selected>Select Category</option>
                                             <option value="plumbing">Plumbing</option>
                                             <option value="electricity">Electricity</option>
                                             <option value="shower">Shower</option>
@@ -36,8 +36,8 @@
                                 </div>
                                 <div class="col-md">
                                     <div class="form-group">
-                                        <select class="form-control" name="status" value="{{old('status')}}">
-                                            <option value="" disabled selected>Select Status</option>
+                                        <select class="form-control" name="status">
+                                            <option value="{{old('status')}}" disabled selected>Select Status</option>
                                             <option value="open">Open</option>
                                             <option value="closed">Closed</option>
                                         </select>

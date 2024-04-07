@@ -11,8 +11,15 @@ class MaintenanceController extends Controller
 
     public function index()
     {
-        $userId = auth()->user()->id;
-        $maintenances = Maintenance::where('user_id', $userId)->latest()->get();
+        $user = auth()->user();
+        $maintenances = [];
+
+        if ($user->role === 'tenant') {
+            $maintenances = Maintenance::where('user_id', $user->id)->latest()->get();
+        } elseif ($user->role === 'landlord') {
+            $maintenances = Maintenance::latest()->get();
+        }
+
         return view('tenant.maintenance', compact('maintenances'));
     }
 
@@ -36,14 +43,19 @@ class MaintenanceController extends Controller
 
         $maintenance = Maintenance::create($formFields);
 
-        //dd($maintenance->category);
-
-        return redirect('/tenant/maintenance')->with('success', 'Maintenance Added Successfully!');
+        return redirect('/tenant/maintenance')->with('$message', 'Maintenance Added Successfully!');
     }
 
     public function edit(Maintenance $maintenance)
     {
         return view('tenant.edit-maintenance', [
+            'maintenance' => $maintenance
+        ]);
+    }
+
+    public function delete(Maintenance $maintenance)
+    {
+        return view('landlord.delete_maintenance', [
             'maintenance' => $maintenance
         ]);
     }
@@ -62,12 +74,12 @@ class MaintenanceController extends Controller
 
         $maintenance->update($formFields);
 
-        return redirect('/tenant/maintenance')->with('success', 'Maintenance Updated successfully!');
+        return redirect('/tenant/maintenance')->with('message', 'Maintenance Updated successfully!');
     }
 
     public function destroy(Maintenance $maintenance)
     {
         $maintenance->delete();
-        return redirect('/tenant/maintenance')->with('success', 'Maintenance deleted successfully!');
+        return redirect('/tenant/maintenance')->with('message', 'Maintenance deleted successfully!');
     }
 }

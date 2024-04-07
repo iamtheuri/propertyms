@@ -23,7 +23,7 @@
                                 <div class="col-md">
                                     <div class="form-group">
                                         <select class="form-control" name="category">
-                                            <option value="{{$maintenance->category}}" disabled selected>{{ucwords($maintenance->category)}}</option>
+                                            <option value="{{$maintenance->category}}" selected>{{ucwords($maintenance->category)}}</option>
                                             <option value="plumbing">Plumbing</option>
                                             <option value="electricity">Electricity</option>
                                             <option value="shower">Shower</option>
@@ -38,7 +38,7 @@
                                 <div class="col-md">
                                     <div class="form-group">
                                         <select class="form-control" name="status">
-                                            <option value="{{$maintenance->status}}" disabled selected>{{ucwords($maintenance->status)}}</option>
+                                            <option value="{{$maintenance->status}}" selected>{{ucwords($maintenance->status)}}</option>
                                             <option value="open">Open</option>
                                             <option value="closed">Closed</option>
                                         </select>
