@@ -3,7 +3,7 @@
 
 @include('partials.header')
 
-<body>
+<body class="auth-bg">
     @include('partials.navbar')
 
     <div class="container">
@@ -65,6 +65,14 @@
                                     <div class="form-group">
                                         <input class="form-control" name="phone" placeholder="Tenant Phone" value="{{old('phone')}}">
                                         @error('phone')
+                                        <p style="color: brown;">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="form-group">
+                                        <input class="date form-control" type="text" placeholder="Tenant Move-In" name="tenant_move_in" value="{{old('tenant_move_in')}}" readonly>
+                                        @error('tenant_move_in')
                                         <p style="color: brown;">{{$message}}</p>
                                         @enderror
                                     </div>

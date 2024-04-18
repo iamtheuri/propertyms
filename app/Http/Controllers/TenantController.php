@@ -47,6 +47,7 @@ class TenantController extends Controller
             'name' => 'required',
             'email' => ['required', 'email', Rule::unique('tenants', 'email')],
             'phone' => ['required', 'phone:KE', Rule::unique('tenants', 'phone')],
+            'tenant_move_in' => 'required',
             'property_id' => 'required',
             'unit_id' => 'required',
         ], [

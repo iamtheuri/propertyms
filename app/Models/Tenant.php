@@ -12,6 +12,7 @@ class Tenant extends Model
         'name',
         'email',
         'phone',
+        'tenant_move_in',
         'lease_agreement_file',
         'property_id',
         'unit_id',
@@ -26,5 +27,10 @@ class Tenant extends Model
     public function property()
     {
         return $this->belongsTo(Property::class, 'property_id', 'id');
+    }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
     }
 }

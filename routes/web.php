@@ -48,7 +48,6 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 */
 
 Route::get('/tenant/home', [UserController::class, 'tenant_home'])->middleware('auth');
-Route::get('/tenant/financials', [UserController::class, 'tenant_financials'])->middleware('auth');
 
 Route::get('/tenant/maintenance', [MaintenanceController::class, 'index'])->middleware('auth');
 Route::get('/tenant/add-maintenance', [MaintenanceController::class, 'add'])->middleware('auth');

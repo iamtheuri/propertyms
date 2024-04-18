@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
+            $table->date('tenant_move_in')->nullable();
             $table->string('lease_agreement_file')->nullable();
             $table->timestamps();
         });

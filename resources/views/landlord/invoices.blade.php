@@ -3,29 +3,7 @@
 
 @include('partials.header')
 
-<style>
-    .reminder-btn {
-        position: fixed;
-        bottom: 20px;
-        right: 30px;
-        z-index: 99;
-        border: none;
-        outline: none;
-        background-color: #9f654f;
-        color: white;
-        cursor: pointer;
-        padding: 15px;
-        border-radius: 5px;
-        font-size: 10px;
-        scroll-behavior: smooth;
-    }
-
-    .reminder-btn:hover {
-        background-color: gray;
-    }
-</style>
-
-<body>
+<body class="auth-bg">
     @include('partials.navbar')
 
     <div class="card m-4">
@@ -50,7 +28,7 @@
                             <th scope="col">Unit</th>
                             <th scope="col">Property</th>
                             <th scope="col">Invoice Amount</th>
-                            <th scope="col">Due Month</th>
+                            <th scope="col">Due Date</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -67,7 +45,7 @@
                             <td>{{$invoice->tenant->unit->name}}</td>
                             <td>{{$invoice->tenant->unit->property->name}}</td>
                             <td>{{$invoice->invoice_amount}}</td>
-                            <td>{{ ucwords($invoice->month) }}</td>
+                            <td>{{ ucwords($invoice->due_date) }}</td>
                             <td>{{ ucwords($invoice->status) }}</td>
                             <td><a href="/landlord/invoices/{{$invoice->id}}/edit" class="btn btn-secondary">Update</a></td>
                         </tr>
@@ -81,7 +59,7 @@
 
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary reminder-btn" data-toggle="modal" data-target="#reminderModal">
-                Send Reminder
+                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>&nbsp; Send Reminder
             </button>
 
             <!-- Modal -->
@@ -97,20 +75,12 @@
                                 <div class="col-md">
                                     <div class="form-group">
                                         <select name="tenant_phone" class="form-control">
-                                            <option value="" disabled selected>Select Tenant</option>
-                                            @foreach ($tenants as $tenant)
-                                            <option value="{{ $tenant->phone }}">{{$tenant->name}}: {{$tenant->phone}}</option>
+                                            <option value="" disabled selected>Select Invoice</option>
+                                            @foreach ($invoices as $invoice)
+                                            <option value=" {{$invoice->tenant->phone}}">{{$invoice->tenant->name}} -- {{$invoice->invoice_amount}} -- {{$invoice->tenant->unit->name}} -- {{$invoice->status}}</option>
                                             @endforeach
                                         </select>
-                                        @error('tenant_phone')
-                                        <p style="color: brown;">{{$message}}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md">
-                                    <div class="form-group">
-                                        <input class="form-control" name="balance" placeholder="Balance">
-                                        @error('balance')
+                                        @error('invoices')
                                         <p style="color: brown;">{{$message}}</p>
                                         @enderror
                                     </div>

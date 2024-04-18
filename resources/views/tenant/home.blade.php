@@ -3,86 +3,159 @@
 
 @include('partials.header')
 
-<body>
+<body class="auth-bg">
     @include('partials.navbar')
 
-    <!-- Tenant Details -->
+    <div class="container">
 
-    <div class="card m-4" style="box-shadow: 0 0 3px #ab7865;" id="#tenants-details">
-        <div class="card-body">
+        @foreach($tenantInfo as $tenant)
+
+        <div class="m-2">
             <div class="col">
                 <div class="row ml-2">
                     <h1 class="text-center">Welcome {{ auth()->user()->name }}</h1>
                 </div>
                 <div class="row">
-                    <div class="card col-sm mr-1" style="box-shadow: 0 0 1px #ab7865;">
+                    <div class="card col-sm m-2" style="box-shadow: 0 0 3px #ab7865;">
                         <div class="card-body">
-                            <h5 class="card-title">Property Name</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Actual Property Name</h6>
+                            <table class="table table-lg">
+                                <th>
+                                    <h5 class="card-title"><b>Property Details</b></h5>
+                                </th>
+                                <tr>
+                                    <td>
+                                        <p><i>Property Name:</i></p>
+                                    </td>
+                                    <td>
+                                        <p><b> {{ $tenant['property_name'] }}</b></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><i>Unit Occupied:</i></p>
+                                    </td>
+                                    <td>
+                                        <p><b> {{ $tenant['unit_name'] }}</b></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><i>Unit Description:</i></p>
+                                    </td>
+                                    <td>
+                                        <p><b> {{ $tenant['description'] }}</b></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><i>Unit Location:</i></p>
+                                    </td>
+                                    <td>
+                                        <p><b> {{ $tenant['location'] }}</b></p>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
-                    <div class="card col-sm mr-1" style="box-shadow: 0 0 1px #ab7865;">
+                    <div class="card col-sm m-2" style="box-shadow: 0 0 3px #ab7865;">
                         <div class="card-body">
-                            <h5 class="card-title">Unit</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Actual Unit</h6>
+
+                            <table class="table table-lg">
+                                <th>
+                                    <h5 class="card-title"><b>{{auth()->user()->name}}'s Lease Period</b></h5>
+                                </th>
+                                <tr>
+                                    <td>
+                                        <p><i>Lease Start:</i></p>
+                                    </td>
+                                    <td>
+                                        <p><b> {{ $tenant['lease_start'] }}</b></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><i>To:</i></p>
+                                    </td>
+                                    <td>
+                                        <p><b>{{ now()->format('F-Y') }}</b></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><i>All Payments:</i></p>
+                                    </td>
+                                    <td>
+                                        <p><b> {{ $tenant['property_name'] }}</b></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card col-sm m-2" style="box-shadow: 0 0 3px #ab7865;">
+                        <div class="card-body">
+
+                            <table class="table table-lg">
+                                <th>
+                                    <h5 class="card-title"><b>Payment Details</b></h5>
+                                </th>
+                                <tr>
+                                    <td>
+                                        <p><i>Payment To: </i></p>
+                                    </td>
+                                    <td>
+                                        <p><b> {{ $tenant['owner'] }}</b></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><i>Mpesa Till:</i></p>
+                                    </td>
+                                    <td>
+                                        <p><b>{{ $tenant['till'] }} </b></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><i>Pending Payments:</i></p>
+                                    </td>
+                                    <td>
+                                        <p><b>Ksh. {{ number_format($tenant['balance']) }}</b></p>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
 
-    <!-- Occupied Property Details -->
+        @endforeach
 
-    <div class="card m-4" style="box-shadow: 0 0 3px #ab7865;" id="#occupied-property-details">
-        <div class="card-body">
-            <div class="col">
-                <div class="row ml-2">
-                    <h1>{{auth()->user()->name}}'s Lease</h1>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 d-flex">
-                        <div class="card flex-fill">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Leasing Period</h5>
-                                <p class="card-text text-large">Tenancy Start Date: 01-01-2024</p>
-                                <p class="card-text text-large">To: {{ time() }}</p>
-                            </div>
-                        </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary reminder-btn auth-bg" data-toggle="modal" data-target="#reminderModal" style="font-size: 0.8rem;">
+            Maintenance
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="reminderModal" tabindex="-1" role="dialog" aria-labelledby="reminderModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title ml-3" id="reminderModalTitle">Have an issue</h5>
                     </div>
-                    <div class="col-sm-6 d-flex">
-                        <div class="card flex-fill">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Your Balance</h5>
-                                <p class="card-text text-large">8,000 KES</p>
-                                <a href="/tenant/financials" class="btn btn-primary">Pay Balance</a>
-                            </div>
+                    <div class="modal-body p-4">
+                        <div class="col-md">
+                            <p>Report issues making you uncomfortable from the comfort of your home!</p>
+                            <p>Create a maintenance issue which will be directly reported to your property supervisors.</p>
+                            <a href="/tenant/add-maintenance" class="btn btn-primary">Create</a>
+                            <button type="button" class="btn btn-secondary ml-3" data-dismiss="modal">Close</button>
                         </div>
+
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
 
-    <!-- Owner Property Contacts -->
-
-    <div class="card m-4" style="box-shadow: 0 0 3px #ab7865;" id="#tenant-owner-details">
-        <div class="card-header">
-            <h1 class="ml-4">Owner Details</h1>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item ml-2">
-                <h5><span class="fa fa-phone"></span> 0712345678</h3>
-            </li>
-            <li class="list-group-item ml-2">
-                <h5><span class="fa fa-envelope"></span> test@test.com</h5>
-            </li>
-            <li class="list-group-item ml-2">
-                <h5><span class="fa fa-map-marker"></span> Test Location</h5>
-            </li>
-        </ul>
     </div>
 
     @include('partials.scripts')

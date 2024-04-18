@@ -3,7 +3,7 @@
 
 @include('partials.header')
 
-<body>
+<body class="auth-bg">
     @include('partials.navbar')
     <div class="container">
 

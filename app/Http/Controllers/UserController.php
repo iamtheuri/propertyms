@@ -22,7 +22,6 @@ class UserController extends Controller
         return view('users.register');
     }
 
-    // Store New User
     public function store(Request $request)
     {
         $formFields = $request->validate([
@@ -33,10 +32,9 @@ class UserController extends Controller
             'password' => ['required', 'confirmed', 'regex:/^(?=.*[A-Z])(?=.*\d).{6,}$/'],
         ]);
 
-        // Encrypt Password
         $formFields['password'] = bcrypt($formFields['password']);
 
-        // Check if the user role is tenant and email exists in the tenants table
+        // Check if tenant email exists
         if ($formFields['role'] === 'tenant') {
             $tenantExists = Tenant::where('email', $formFields['email'])->first();
             if (!$tenantExists) {
@@ -44,7 +42,7 @@ class UserController extends Controller
             }
         }
 
-        // Create New User
+        // New User
         $user = User::create($formFields);
 
         // dd($user->role);
@@ -55,7 +53,6 @@ class UserController extends Controller
             $redirectTo = '/tenant/home';
         }
 
-        // Login
         auth()->login($user);
 
         return redirect($redirectTo)->with('message', 'User created and logged in');
@@ -102,36 +99,80 @@ class UserController extends Controller
 
     public function tenant_home()
     {
-        return view('tenant.home');
-    }
+        $tenantEmail = auth()->user()->email;
+        $authTenants = Tenant::where('email', $tenantEmail)->get();
 
-    public function tenant_financials()
-    {
-        return view('tenant.financials');
+
+        $tenantInfo = [];
+        foreach ($authTenants as $authTenant) {
+            $propertyName = $authTenant->unit->property->name;
+            $unitName = $authTenant->unit->name;
+            $leaseStart = $authTenant->tenant_move_in;
+            $owner = $authTenant->unit->property->owner;
+            $location = $authTenant->unit->property->location;
+            $till = $authTenant->unit->property->till;
+            $description = $authTenant->unit->property->description;
+
+            $balance = $authTenant->invoices->where('status', 'pending')->sum('invoice_amount');
+
+            $tenantInfo[] = [
+                'property_name' => $propertyName,
+                'unit_name' => $unitName,
+                'lease_start' => $leaseStart,
+                'owner' => $owner,
+                'location' => $location,
+                'till' => $till,
+                'description' => $description,
+                'balance' => $balance,
+            ];
+        }
+
+        return view('tenant.home', [
+            'tenantInfo' => $tenantInfo
+        ]);
     }
 
     public function landlord_home()
     {
         $userId = auth()->user()->id;
+        $propertyCount = Property::where('user_id', $userId)->latest()->count();
+        $unitCount = Unit::where('user_id', $userId)->latest()->count();
+        $tenantCount = Tenant::where('user_id', $userId)->latest()->count();
+
         $units = Unit::where('user_id', $userId)->with('property')->latest()->get();
         $vacantCount = $units->where('occupied', 'vacant')->count();
         $occupiedCount = $units->where('occupied', 'occupied')->count();
-        $invoices = Invoice::where('user_id', $userId)->get();
-        $invoiceTotal = $invoices->sum('invoice_amount');
+
+        $invoices = Invoice::where('user_id', $userId)
+            ->where('status', 'pending')
+            ->get();
+
+        $totalPending = $invoices->sum('invoice_amount');
+
+        $receivedPayments = Invoice::where('user_id', $userId)
+            ->where('status', 'closed')
+            ->get();
+        $totalReceived = $receivedPayments->sum('invoice_amount');
+
         $currentMonth = strtolower(now()->format('F'));
-        $currentMonthInvoice = $invoices->where('month', $currentMonth)
+        $selectedDate = request()->input('due_date');
+
+        $currentMonthInvoice = $invoices->where('due_date', $selectedDate)
             ->where('status', 'pending')
             ->pluck('invoice_amount')
             ->sum();
-        $closedInvoices = $invoices->where('status', 'closed')->pluck('invoice_amount')->sum();
+
         return view('landlord.home', [
             'units' => $units,
             'vacantCount' => $vacantCount,
             'occupiedCount' => $occupiedCount,
-            'invoiceTotal' => $invoiceTotal,
+            'totalPending' => $totalPending,
+            'totalReceived' => $totalReceived,
             'currentMonth' => $currentMonth,
+            'propertyCount' => $propertyCount,
+            'unitCount' => $unitCount,
+            'tenantCount' => $unitCount,
             'currentMonthInvoice' => $currentMonthInvoice,
-            'closedInvoices' => $closedInvoices,
         ]);
     }
 }

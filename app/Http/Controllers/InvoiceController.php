@@ -46,7 +46,7 @@ class InvoiceController extends Controller
             'unit_id' => 'required',
             'tenant_id' => 'required',
             'invoice_amount' => 'required',
-            'month' => ['nullable', 'in:january,february,march,april,may,june,july,august,september,october,november,december'],
+            'due_date' => 'required',
             'status' => ['required', 'in:pending,closed'],
         ]);
         $userId = auth()->user()->id;
@@ -64,7 +64,6 @@ class InvoiceController extends Controller
         $propertyIds = $properties->pluck('id');
         $units = Unit::whereIn('property_id', $propertyIds)->get();
         $tenants = Tenant::where('user_id', $userId)->get();
-        // dd($invoice->tenant->unit->property->name);
         return view('landlord.edit_invoice', [
             'tenants' => $tenants,
             'properties' => $properties,
@@ -81,7 +80,7 @@ class InvoiceController extends Controller
             'unit_id' => 'required',
             'tenant_id' => 'required',
             'invoice_amount' => 'required',
-            'month' => ['nullable', 'in:january,february,march,april,may,june,july,august,september,october,november,december'],
+            'due_date' => 'required',
             'status' => ['required', 'in:pending,closed'],
         ]);
         $userId = auth()->user()->id;
@@ -104,7 +103,12 @@ class InvoiceController extends Controller
         $key = config('infobip.api_key');
         $baseUrl = config('infobip.url_base_path');
         $selectedPhone = $request->input('tenant_phone');
-        $balance = $request->input('balance');
+
+        $selectedInvoice = Invoice::whereHas('tenant', function ($query) use ($selectedPhone) {
+            $query->where('phone', $selectedPhone);
+        })->first();
+
+        $balance = $selectedInvoice->invoice_amount;
 
         $selectedTenant = Tenant::where('phone', $selectedPhone)->first();
         $selectedName = $selectedTenant->name;

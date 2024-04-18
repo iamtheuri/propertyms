@@ -3,7 +3,7 @@
 
 @include('partials.header')
 
-<body>
+<body class="auth-bg">
     @include('partials.navbar')
 
     <div class="card m-4">
@@ -29,6 +29,7 @@
                             <th scope="col">Unit</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
+                            <th scope="col">Move-In</th>
                             <th scope="col">Lease</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -45,6 +46,7 @@
                             <td>{{$tenant->unit->name}}</td>
                             <td>{{$tenant->email}}</td>
                             <td>{{$tenant->phone}}</td>
+                            <td>{{$tenant->tenant_move_in}}</td>
                             <td>
                                 @if ($tenant->lease_agreement_file)
                                 <a href="{{ asset('storage/' . $tenant->lease_agreement_file) }}" class="btn btn-secondary"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp; View</a>

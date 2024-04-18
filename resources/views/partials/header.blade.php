@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
     <link rel="stylesheet" href="{{asset('css/animate.css')}}">
 
     <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
@@ -16,4 +18,6 @@
     <link rel="stylesheet" href="{{asset('css/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="icon" type="image/x-icon" href="{{asset('image/anonymous.ico')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>

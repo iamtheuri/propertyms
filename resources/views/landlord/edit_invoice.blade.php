@@ -3,7 +3,7 @@
 
 @include('partials.header')
 
-<body>
+<body class="auth-bg">
     @include('partials.navbar')
 
     <div class="container">
@@ -79,22 +79,8 @@
                                     </div>
                                     <div class="col-md">
                                         <div class="form-group">
-                                            <select name="month" class="form-control">
-                                                <option value="{{ $invoice->month }}" selected>{{ ucwords($invoice->month) }}</option>
-                                                <option value="january">January</option>
-                                                <option value="february">February</option>
-                                                <option value="march">March</option>
-                                                <option value="april">April</option>
-                                                <option value="may">May</option>
-                                                <option value="june">June</option>
-                                                <option value="july">July</option>
-                                                <option value="august">August</option>
-                                                <option value="september">September</option>
-                                                <option value="october">October</option>
-                                                <option value="november">November</option>
-                                                <option value="december">December</option>
-                                            </select>
-                                            @error('month')
+                                            <input class="date form-control" type="text" placeholder="Due Date" name="due_date" value="{{ $invoice->due_date }}" readonly>
+                                            @error('due_date')
                                             <p style="color: brown;">{{$message}}</p>
                                             @enderror
                                         </div>

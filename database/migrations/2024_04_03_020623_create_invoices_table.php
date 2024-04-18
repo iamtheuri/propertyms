@@ -31,7 +31,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('invoice_amount');
-            $table->enum('month', ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'])->nullable();
+            $table->date('due_date')->nullable();
             $table->enum('status', ['pending', 'closed']);
             $table->timestamps();
         });
