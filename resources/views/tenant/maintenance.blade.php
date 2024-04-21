@@ -24,30 +24,31 @@
             No maintenance issues as of now.
 
             @else
+            <div style="overflow-x:auto;">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Issue</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Summary</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($maintenances as $maintenance)
+                        <tr>
+                            <th scope="row">{{$maintenanceIndex ++ }}</th>
+                            <td>{{$maintenance->category}}</td>
+                            <td>{{$maintenance->status}}</td>
+                            <td>{{$maintenance->summary}}</td>
+                            <td><a href=" /landlord/maintenance/{{ $maintenance->id }}/edit" class="btn btn-secondary">Delete</a></td>
+                        </tr>
+                        @endforeach
 
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Issue</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Summary</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($maintenances as $maintenance)
-                    <tr>
-                        <th scope="row">{{$maintenanceIndex ++ }}</th>
-                        <td>{{$maintenance->category}}</td>
-                        <td>{{$maintenance->status}}</td>
-                        <td>{{$maintenance->summary}}</td>
-                        <td><a href=" /landlord/maintenance/{{ $maintenance->id }}/edit" class="btn btn-secondary">Delete</a></td>
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
 
             @endif
 

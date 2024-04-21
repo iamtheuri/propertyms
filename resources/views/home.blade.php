@@ -25,8 +25,8 @@
                     <div class="d-block services-wrap text-center">
                         <div class="img" style="background-image: url('{{asset('image/home-1.webp')}}')"></div>
                         <div class="media-body py-4 px-3">
-                            <h3 class="heading">Automate Property Management</h3>
-                            <p>Easily scale and manage more properties by automating repetitive tasks.
+                            <h3 class="heading">Simplify Property Management</h3>
+                            <p>Easily manage more properties seamlessly.
                             </p>
                             <p><a href="#" class="btn btn-primary">Contact Us</a></p>
                         </div>
@@ -37,7 +37,7 @@
                         <div class="img" style="background-image: url('{{asset('image/home-2.webp')}}')"></div>
                         <div class="media-body py-4 px-3">
                             <h3 class="heading">Reports and Statements</h3>
-                            <p>Quickly generate tenant, property and landlord statements with the click of a button.
+                            <p>Quickly generate property and tenant invoices with the click of a button.
                             </p>
                             <p><a href="#" class="btn btn-primary">Contact Us</a></p>
                         </div>
@@ -151,27 +151,17 @@
                 <div class="col-md-6 wrap-about">
                     <div class="img img-2 mb-4" style="background-image: url('{{asset('image/home-8.webp')}}')">
                     </div>
-                    <h2>Manage rentals seamlessly</h2>
-                    <p>A modern property management system that helps landlords and tenants communicate
-                        and resolve issues effectively. With features such as a real-time messaging system, automated
-                        rent collection reminders, and a comprehensive
-                        maintenance reporting mechanism, Property MS is the perfect solution for improving the
-                        landlord-tenant relationship and optimizing property management</p>
                 </div>
                 <div class="col-md-6 wrap-about ftco-animate">
                     <div class="heading-section">
                         <div class="pl-md-5">
-                            <h2 class="mb-2">We offer...</h2>
+                            <h2>Landlords...</h2>
                         </div>
                     </div>
                     <div class="pl-md-5">
-                        <p>Property MS is mainly meant for making Rental Property Management for Landlords as seamless
-                            as possible. To do this, we go to the extent of allowing tenants to view available
-                            properties so they can know if we fit their needs. Not
-                            finding what you want? Head on to contact us and see our endless scope of accomodations we
-                            have just for you by clicking <a href="/contact" style="text-decoration: underline;">here!</a>
-                            We also offer Bed & Breakfast (Air BnBs).
-                            Our BnBs come featured with the following features:
+                        <p>Through property MS, you and your tenants can communicate
+                            and resolve issues effectively. With features such as a real-time messaging system, SMS rent collection reminders, reports, and a comprehensive
+                            maintenance reporting mechanism, Property MS is the perfect solution for for your needs!
                         </p>
                         <div class="row">
                             <div class="services-2 col-lg-6 d-flex w-100">
@@ -179,10 +169,8 @@
                                     <span><i class="fa fa-user-secret"></i></span>
                                 </div>
                                 <div class="media-body pl-3">
-                                    <h3 class="heading">Security Cameras</h3>
-                                    <p>We have biometrics and well equiped security cameras that can see well in the
-                                        dark to help ensure you dont get intruders mascarading their way into your
-                                        property.
+                                    <h3 class="heading">Data Security</h3>
+                                    <p>Your data and that of your clients is safe and secure with us. No one apart from you can access your data, your dashboard or even contact your clients.
                                     </p>
                                 </div>
                             </div>
@@ -191,9 +179,8 @@
                                     <span><i class="fa fa-user"></i></span>
                                 </div>
                                 <div class="media-body pl-3">
-                                    <h3 class="heading">Air Conditioning</h3>
-                                    <p>Great airr flow in our premises with adequate ventilation ensuring conditions
-                                        like asthma patients are taken care of
+                                    <h3 class="heading">Include everyone</h3>
+                                    <p>With their own customized dashboard, get clients to feel included in how things go in their apartment
                                     </p>
                                 </div>
                             </div>
@@ -203,9 +190,8 @@
                                     <span class="flaticon-workout"></span>
                                 </div>
                                 <div class="media-body pl-3">
-                                    <h3 class="heading">Fully Furnished</h3>
-                                    <p>Our BnBs come fully furnished and equiped with features that make it 100%
-                                        self-contained.
+                                    <h3 class="heading">Reports</h3>
+                                    <p>Manage property you own, view details, create new, remove unwanted tenants all at ease.
                                     </p>
                                 </div>
                             </div>
@@ -214,9 +200,8 @@
                                     <span><i class="fa fa-wifi"></i></span>
                                 </div>
                                 <div class="media-body pl-3">
-                                    <h3 class="heading">Free Wifi</h3>
-                                    <p>In the fast-paced evolving world, our premises come equiped with fast, free
-                                        internet connection.
+                                    <h3 class="heading">Real-Time Messaging</h3>
+                                    <p>Send reminders to your clients from the comfort of our system, wherever you are and receive maintence updates from clients easily.
                                     </p>
                                 </div>
                             </div>

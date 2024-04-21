@@ -77,7 +77,24 @@
                                         <select name="tenant_phone" class="form-control">
                                             <option value="" disabled selected>Select Invoice</option>
                                             @foreach ($invoices as $invoice)
-                                            <option value=" {{$invoice->tenant->phone}}">{{$invoice->tenant->name}} -- {{$invoice->invoice_amount}} -- {{$invoice->tenant->unit->name}} -- {{$invoice->status}}</option>
+                                            <option value=" {{$invoice->tenant->phone}}">
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            {{$invoice->name}} &nbsp;&nbsp;&nbsp;
+                                                        </td>
+                                                        <td>
+                                                            {{$invoice->tenant->name}} &nbsp;&nbsp;&nbsp;
+                                                        </td>
+                                                        <td>
+                                                            {{$invoice->invoice_amount}} &nbsp;&nbsp;&nbsp;
+                                                        </td>
+                                                        <td>
+                                                            {{$invoice->tenant->unit->name}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </option>
                                             @endforeach
                                         </select>
                                         @error('invoices')

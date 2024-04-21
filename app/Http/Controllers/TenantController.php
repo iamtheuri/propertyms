@@ -85,8 +85,8 @@ class TenantController extends Controller
     {
         $formFields = $request->validate([
             'name' => 'required',
-            'email' => ['required', 'email', Rule::unique('tenants', 'email')],
-            'phone' => ['required', 'phone:KE', Rule::unique('tenants', 'phone')],
+            'email' => ['required'],
+            'phone' => ['required'],
             'property_id' => 'required',
             'unit_id' => 'required',
         ]);
