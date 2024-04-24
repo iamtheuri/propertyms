@@ -23,7 +23,7 @@
         </div>
         <div class="toast-body">
             {{ session('message') }} <br>
-            <small>Time: {{now()}}</small>
+            <small>At: {{now()}}</small>
         </div>
     </div>
 </div>

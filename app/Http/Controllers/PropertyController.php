@@ -11,7 +11,22 @@ class PropertyController extends Controller
     public function index()
     {
         $userId = auth()->id();
-        $properties = Property::where('user_id', $userId)->latest()->get();
+        $name = request('search');
+
+        $propertiesQuery = Property::where('user_id', $userId)->latest();
+        if ($name) {
+            $propertiesQuery->where('name', 'like', "%$name%")
+                ->orWhere('description', 'like', "%$name%")
+                ->orWhere('location', 'like', "%$name%")
+                ->orWhere('owner', 'like', "%$name%");
+        }
+
+        $properties = $propertiesQuery->get();
+
+        if ($properties->isEmpty()) {
+            return redirect('/landlord/properties')->with('message', 'Not found');
+        }
+
         return view('landlord.properties', compact('properties'));
     }
 

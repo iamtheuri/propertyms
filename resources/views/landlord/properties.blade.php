@@ -9,7 +9,13 @@
     <div class="card m-4">
 
         <div class="card-header">
-            <h1>Property for {{auth()->user()->name}}</h1>
+            <div class="row mx-2">
+                <h1>Property for {{auth()->user()->name}}</h1>
+                <form class="form-inline my-2 my-lg-0 ml-auto" action="">
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search Properties">
+                    <button class="btn btn-sm btn-primary" type="submit">Search</button>
+                </form>
+            </div>
         </div>
 
         <div class="card-body">
